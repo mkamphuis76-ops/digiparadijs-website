@@ -56,7 +56,7 @@ if (preg_match_all('/https?:\/\/|www\./i', $bericht) > 3) { reply(false, 'invali
 
 // 4. Maximaal aantal aanvragen per uur per IP-adres
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'onbekend';
-$dir = __DIR__ . '/.aanvragen-limiet';
+$dir = is_writable(dirname(__DIR__)) ? dirname(__DIR__) . '/.aanvragen-limiet' : __DIR__ . '/.aanvragen-limiet';
 if (!is_dir($dir)) { @mkdir($dir, 0700, true); @file_put_contents($dir . '/.htaccess', "Require all denied\nDeny from all\n"); }
 $file = $dir . '/' . hash('sha256', $ip) . '.json';
 $hits = [];
