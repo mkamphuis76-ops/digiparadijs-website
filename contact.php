@@ -98,6 +98,7 @@ $headers .= "Content-Transfer-Encoding: 8bit\r\n";
 $sent = @mail($TO, $encSubject, $body, $headers, '-f' . $FROM);
 if (!$sent) { reply(false, 'mail', 500); }
 
+if (is_readable(__DIR__ . '/stats-lib.php')) { require_once __DIR__ . '/stats-lib.php'; dp_log('aanvraag'); }
 $hits[] = time();
 @file_put_contents($file, json_encode($hits), LOCK_EX);
 reply(true);

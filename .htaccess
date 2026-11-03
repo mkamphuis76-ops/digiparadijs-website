@@ -1,8 +1,9 @@
 # Bestanden die alleen voor GitHub zijn, niet tonen op de website
-<FilesMatch "^(README\.md|\.gitignore|\.htaccess)$">
+<FilesMatch "^(README\.md|\.gitignore|\.htaccess|stats-lib\.php)$">
   Require all denied
 </FilesMatch>
 # Map met tellers van de spambeveiliging afschermen
 RedirectMatch 404 /\.aanvragen-limiet/
+RedirectMatch 404 /\.dp-stats/
 # Geen mappenoverzicht tonen
 Options -Indexes

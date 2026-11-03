@@ -1030,6 +1030,25 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       .then(function(){ clearTimeout(timer); sending = false; send.disabled = false; send.firstChild.textContent = "Verstuur aanvraag "; });
   });
 
+
+  // Bezoekersstatistieken (zonder cookies) – werkt alleen op de echte website
+  function dpTrack(t, n){
+    if(EMBED || location.protocol.indexOf("http") !== 0) return;
+    try{
+      var fd = new FormData(); fd.append("t", t);
+      if(t === "view"){ fd.append("p", location.pathname); fd.append("r", document.referrer || ""); fd.append("w", String(window.innerWidth || 0)); }
+      if(n) fd.append("n", n);
+      if(navigator.sendBeacon) navigator.sendBeacon("stats.php", fd); else fetch("stats.php", {method:"POST", body:fd, keepalive:true});
+    }catch(e){}
+  }
+  dpTrack("view");
+  var calcSent = false;
+  document.querySelectorAll("#calculator input").forEach(function(i){ i.addEventListener("change", function(){ if(!calcSent){ calcSent = true; dpTrack("calc"); } }); });
+  document.getElementById("rCta").addEventListener("click", function(){ dpTrack("offerte"); });
+  document.querySelectorAll("a.cloud86").forEach(function(a){ a.addEventListener("click", function(){ dpTrack("cloud86"); }); });
+  document.querySelectorAll(".case").forEach(function(c){ var n = c.querySelector("h3"); c.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ dpTrack("case", n ? n.textContent : ""); }); }); });
+  document.getElementById("copyMail").addEventListener("click", function(){ dpTrack("mail"); });
+
   // Vriendelijk duwtje na een tijdje rondkijken
   var nudge = document.getElementById("nudge"), shown = false, seen = false;
   try{ seen = sessionStorage.getItem("dpNudge") === "1"; }catch(e){}
