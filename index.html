@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Digi Paradijs</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<meta name="theme-color" content="#0E3B43">
 <meta name="description" content="Digi Paradijs maakt betaalbare, persoonlijke websites voor kleine ondernemers en verenigingen. Vaste prijs vanaf € 199.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +67,9 @@ section{padding-block:clamp(64px,9vw,120px)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
 .brand b{color:var(--sea-ink)}
 .mark{width:34px;height:34px;flex:none}
+.brand .logo{display:block;height:42px;width:auto}
+@media (max-width:520px){.brand .logo{height:34px}}
+.foot .brand .logo{height:32px}
 .menu{display:flex;gap:26px;margin-left:auto;align-items:center}
 .menu a{text-decoration:none;font-weight:700;font-size:.95rem}
 .menu a:not(.btn){position:relative}
@@ -439,10 +446,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
 <header class="top" id="top-bar">
   <div class="wrap nav">
-    <a class="brand" href="#start" aria-label="Digi Paradijs, naar boven">
-      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB36B"/><stop offset="1" stop-color="#FF7A59"/></linearGradient></defs><circle cx="20" cy="20" r="19" fill="url(#sg)"/><rect x="0" y="23" width="40" height="2.4" fill="#F7F5F0"/><rect x="0" y="28" width="40" height="2.4" fill="#F7F5F0"/><rect x="0" y="33" width="40" height="2.4" fill="#F7F5F0"/><path d="M21 34c.8-6 .6-11-.6-16" stroke="#0E3B43" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M20.4 18c-4-4-9-3.5-11.5 0 4-1.6 7.8-1.4 11.5 0zM20.4 18c3.5-4.4 9-4.2 11.4-.6-3.9-1.5-7.7-1.2-11.4.6zM20.4 18c-1.2-5 1.2-8.6 4.8-9-1.9 2.8-3.4 5.7-4.8 9z" fill="#0E3B43"/></svg>
-      <span>Digi <b>Paradijs</b></span>
-    </a>
+    <a class="brand" href="#start" aria-label="Digi Paradijs, naar boven"><img class="logo" src="img/logo/digi-paradijs-horizontaal-kleur.svg" alt="Digi Paradijs" width="167" height="35"></a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav class="menu" id="menu">
       <a href="#werk">Werk</a>
@@ -805,7 +809,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
 <footer>
   <div class="wrap foot">
-    <span class="brand"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#FFB36B"/><rect x="0" y="23" width="40" height="2.4" fill="#0A2B31"/><rect x="0" y="28" width="40" height="2.4" fill="#0A2B31"/><rect x="0" y="33" width="40" height="2.4" fill="#0A2B31"/></svg>Digi Paradijs</span>
+    <span class="brand"><img class="logo" src="img/logo/digi-paradijs-horizontaal-wit.svg" alt="Digi Paradijs" width="167" height="35" loading="lazy"></span>
     <nav><a href="#werk">Werk</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
     <span>© 2026 Digi Paradijs · info@digiparadijs.nl</span>
   </div>
@@ -813,7 +817,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
 <div class="nudge" id="nudge" role="dialog" aria-label="Hulp nodig?">
   <button class="x" id="nudgeX" aria-label="Sluiten">×</button>
-  <div class="who"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#14A3A0"/><rect x="0" y="23" width="40" height="2.4" fill="#fff"/><rect x="0" y="28" width="40" height="2.4" fill="#fff"/></svg>Even kijken wat je nodig hebt?</div>
+  <div class="who"><img class="mark" src="img/logo/digi-paradijs-beeldmerk-kleur.svg" alt="" width="34" height="34" loading="lazy">Even kijken wat je nodig hebt?</div>
   <p>We denken gratis met je mee. Je krijgt binnen twee werkdagen een eerlijk advies en een prijsvoorstel.</p>
   <div class="row"><a href="#contact" class="btn btn-hot" id="nudgeGo">Vraag advies</a><a href="#calculator" class="btn btn-line" id="nudgeCalc">Bereken prijs</a></div>
 </div>
