@@ -136,6 +136,23 @@ section{padding-block:clamp(64px,9vw,120px)}
 
 @media (max-width:520px){.stamp{font-size:.78rem;padding:8px 11px}.stamp small{font-size:.68rem}.stamp.s2{left:0}.sunring{left:-3%;top:-4%}}
 
+
+/* Vliegende vogel uit het logo */
+.flybird{position:absolute;z-index:4;left:-4%;top:-15%;width:clamp(56px,7vw,84px);pointer-events:none;animation:flyin 3.2s cubic-bezier(.25,.6,.3,1) .5s both}
+.fly-hover{animation:hover 3.6s ease-in-out 3.7s infinite}
+.fly-wing{display:block;width:100%;height:auto;transform-origin:45% 55%;animation:flutter .14s linear .5s 23}
+@keyframes flyin{
+  0%{transform:translate(-75vw,38vh) rotate(-14deg) scale(.7);opacity:0}
+  12%{opacity:1}
+  45%{transform:translate(-38vw,-2vh) rotate(-6deg) scale(.85)}
+  75%{transform:translate(-8vw,6vh) rotate(4deg) scale(.95)}
+  100%{transform:translate(0,0) rotate(0) scale(1);opacity:1}}
+@keyframes flutter{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.78) skewX(-4deg)}}
+@keyframes hover{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(-3deg)}}
+.embed .flybird{display:none}
+@media (max-width:520px){.flybird{left:3%;top:-5%;width:58px}}
+@media (prefers-reduced-motion:reduce){.flybird,.fly-hover,.fly-wing{animation:none!important;opacity:1}}
+
 /* Screens with live pages */
 .screen{position:relative;overflow:hidden;background:var(--g,#ddd)}
 .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800;text-align:center;padding:10px}
@@ -479,6 +496,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
       <div class="art">
         <div class="sunring" aria-hidden="true"></div>
+        <div class="flybird" aria-hidden="true"><div class="fly-hover"><img class="fly-wing" src="img/logo/digi-paradijs-beeldmerk-kleur.svg" alt="" width="84" height="84"></div></div>
         <figure class="photo"><picture><source srcset="img/hero.webp" type="image/webp"><img src="img/hero.jpg" alt="Laptop met de website van Mies op z'n plek op een lichte werkplek" width="1100" height="1100" fetchpriority="high"></picture><div class="lscreen" id="lscreen" aria-hidden="true"><iframe data-src="portfolio/mies.html" title="miesopznplek.nl op een laptop" tabindex="-1"></iframe></div></figure>
         <div class="hphone" aria-hidden="true"><div class="screen" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe data-src="portfolio/hidden-moments.html" title="Voorbeeldwebsite" tabindex="-1"></iframe></div></div></div>
         <div class="stamp s1" aria-hidden="true">Slim gemaakt met AI<small>door ons gecontroleerd</small></div>
