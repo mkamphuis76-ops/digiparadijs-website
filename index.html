@@ -112,7 +112,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .wphoto{position:relative;margin:0 0 clamp(32px,5vw,56px);border-radius:28px;overflow:hidden;aspect-ratio:16/9;max-width:100%;background:#D9C3A5;box-shadow:0 50px 90px -40px rgba(0,0,0,.6)}
 .wphoto picture{display:block;width:100%;height:100%}
 .wphoto img{display:block;width:100%;height:100%;object-fit:cover}
-.pscreen{position:absolute;left:0;top:0;width:390px;height:700px;transform-origin:0 0;overflow:hidden;border-radius:44px;background:#F7F5F0;visibility:hidden}
+.pscreen{position:absolute;left:0;top:0;width:390px;height:700px;transform-origin:0 0;overflow:hidden;border-radius:64px;background:#F7F5F0;visibility:hidden}
 .pscreen.ready{visibility:visible}
 .pscroll{width:390px;height:2600px;animation:pscroll 26s ease-in-out infinite}
 .pscroll iframe{display:block;width:390px;height:2600px;border:0;pointer-events:none}
@@ -885,7 +885,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   var Q = [[.1906,.3142],[.5654,.3014],[.6053,.5702],[.2305,.6172]];
   function solve(A,b){ var n=b.length; for(var i=0;i<n;i++){ var m=i; for(var k=i+1;k<n;k++) if(Math.abs(A[k][i])>Math.abs(A[m][i])) m=k; var t=A[i];A[i]=A[m];A[m]=t; var tb=b[i];b[i]=b[m];b[m]=tb; for(var k=i+1;k<n;k++){ var f=A[k][i]/A[i][i]; for(var j=i;j<n;j++) A[k][j]-=f*A[i][j]; b[k]-=f*b[i]; } } var x=new Array(n); for(var i=n-1;i>=0;i--){ var s=b[i]; for(var j=i+1;j<n;j++) s-=A[i][j]*x[j]; x[i]=s/A[i][i]; } return x; }
   var ps = document.getElementById("pscreen");
-  var Q2 = [[.0179,.3958],[.1471,.3640],[.2010,.7439],[.0613,.7981]];
+  var Q2 = [[.0168,.3911],[.1507,.3560],[.2028,.7481],[.0568,.8045]];
   function mapQuad(el, q, sw, sh){
     if(!el) return; var ph = el.parentNode, W = ph.clientWidth, H = ph.clientHeight; if(!W) return;
     var src=[[0,0],[sw,0],[sw,sh],[0,sh]], A=[], b=[];
