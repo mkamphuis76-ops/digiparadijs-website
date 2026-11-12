@@ -201,18 +201,19 @@ main{overflow-x:hidden;overflow-x:clip;max-width:100vw}
 
 /* Apps op maat */
 .apps{background:var(--paper-2)}
-.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,36px)}
-.app-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,34px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,32px);align-items:center;min-width:0}
-.aphone{display:block;width:clamp(150px,15vw,184px);background:#121A17;border-radius:26px;padding:6px;box-shadow:0 30px 50px -22px rgba(16,42,47,.55);text-decoration:none;transition:transform .4s}
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+.app-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,2.4vw,30px);display:grid;grid-template-columns:1fr;gap:26px;align-content:start;min-width:0}
+.aphone{display:block;width:clamp(150px,15vw,184px);margin-inline:auto;background:#121A17;border-radius:26px;padding:6px;box-shadow:0 30px 50px -22px rgba(16,42,47,.55);text-decoration:none;transition:transform .4s}
 .aphone:hover{transform:translateY(-6px)}
 .aphone .screen{aspect-ratio:9/19.2;border-radius:20px}
+.aphone .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .app-card .case-info h3{font-size:clamp(1.35rem,2.2vw,1.7rem)}
 .app-foot{margin-top:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;background:var(--jungle);color:var(--on-jungle);border-radius:24px;padding:clamp(22px,3vw,32px)}
 .app-foot h3{font-family:var(--display);font-size:clamp(1.15rem,2vw,1.45rem);letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
 .app-foot p{opacity:.85;max-width:56ch}
 .app-note{margin-top:18px;font-size:.9rem;color:var(--mute);max-width:70ch}
-@media (max-width:1040px){.app-grid{grid-template-columns:1fr}}
-@media (max-width:560px){.app-card{grid-template-columns:1fr}.aphone{width:168px;margin-inline:auto}}
+@media (max-width:1040px){.app-grid{grid-template-columns:1fr}.app-card{grid-template-columns:auto 1fr;gap:clamp(20px,3vw,32px);align-items:center}}
+@media (max-width:560px){.app-card{grid-template-columns:1fr}.aphone{width:168px}}
 
 /* Facts */
 .facts{background:var(--jungle);color:var(--on-jungle)}
@@ -581,8 +582,8 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     <div class="wrap">
       <div class="head">
         <span class="label">Apps</span>
-        <h2>Ook apps op maat, voor op de werkvloer</h2>
-        <p class="lead">Naast websites maken we handige apps voor bedrijven. Op maat gemaakt voor jouw zaak, voor een vaste prijs die je vooraf weet.</p>
+        <h2>Ook apps op maat</h2>
+        <p class="lead">Naast websites maken we handige apps voor bedrijven. Op maat gemaakt voor jouw zaak, voor een vaste prijs die je vooraf weet. Onze eigen app STEEQI laat zien wat er kan.</p>
       </div>
       <div class="app-grid">
         <article class="app-card">
@@ -607,6 +608,18 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
             <p>Zoek in een paar tellen op welke allergenen in een product zitten. Gebouwd op je eigen bestellijst, zodat je een gast snel en duidelijk antwoord geeft.</p>
             <div class="tags"><span>Zoeken op product</span><span>14 allergenen</span><span>Eigen bestellijst</span><span>Werkt op elke telefoon</span></div>
             <a class="case-link" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="app-card">
+          <a class="aphone" href="https://steeqi.app" target="_blank" rel="noopener" aria-label="Bezoek steeqi.app">
+            <div class="screen" style="--g:linear-gradient(150deg,#FF7A00,#141414)"><img src="img/steeqi-app.webp" alt="De stekenteller van STEEQI op een telefoon" width="600" height="1298" loading="lazy"></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Eigen app · breien en haken</span>
+            <h3>STEEQI</h3>
+            <p>Onze eigen brei- en haakapp. Steken tellen, je patroon stap voor stap volgen, projecten bijhouden en je garenkast beheren. Met gratis en betaalde accounts.</p>
+            <div class="tags"><span>Stekenteller</span><span>Patronen volgen</span><span>Gratis en PRO</span><span>Nederlands en Engels</span></div>
+            <a class="case-link" href="https://steeqi.app" target="_blank" rel="noopener">Bekijk de app <span class="arrow">→</span></a>
           </div>
         </article>
       </div>
