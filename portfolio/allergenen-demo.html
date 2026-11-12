@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Allergenen-app – demo | Digi Paradijs</title>
+<meta name="description" content="Demo van een allergenen-app op maat van Digi Paradijs, met voorbeeldgegevens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Demo met een verzonnen bestellijst. In een echte app staat hier de eigen bestellijst van het bedrijf. */
+:root{
+  --bg:#f4f6f5;--surface:#ffffff;--ink:#16211e;--muted:#5d6b67;--line:#dbe2df;
+  --accent:#0f6b5c;--accent-ink:#ffffff;
+  --bevat-bg:#fbe3e0;--bevat-ink:#8f1d14;
+  --kan-bg:#fdefc8;--kan-ink:#6e4a00;
+  --none-bg:#e8edeb;--none-ink:#44524e;
+  --font:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.4}
+.top{flex:none;padding:calc(18px + env(safe-area-inset-top,0px)) 16px 10px;display:flex;flex-direction:column;gap:10px;max-width:720px;width:100%;margin:0 auto}
+h1{font-size:22px;font-weight:700;margin:0}
+.sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+.search{position:relative}
+#q{width:100%;font:inherit;font-size:17px;padding:13px 44px 13px 14px;border:2px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink)}
+#q:focus{outline:none;border-color:var(--accent)}
+#clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:20px;cursor:pointer;display:none}
+#clear:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:14px;font-weight:500;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+#count{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+main{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.wrap{max-width:720px;margin:0 auto;padding:2px 16px calc(32px + env(safe-area-inset-bottom,0px))}
+#list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.name{font-weight:600;overflow-wrap:anywhere}
+.meta{color:var(--muted);font-size:13px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.lab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;width:100%}
+.lab.b{color:var(--bevat-ink)}.lab.k{color:var(--kan-ink)}
+.pill{font-size:14px;font-weight:600;padding:3px 10px;border-radius:8px}
+.pill.b{background:var(--bevat-bg);color:var(--bevat-ink)}
+.pill.k{background:var(--kan-bg);color:var(--kan-ink)}
+.note{font-size:14px;padding:4px 10px;border-radius:8px;background:var(--none-bg);color:var(--none-ink);align-self:flex-start}
+.empty{color:var(--muted);padding:24px 0;text-align:center}
+footer{color:var(--muted);font-size:13px;margin-top:24px;border-top:1px solid var(--line);padding-top:14px}
+footer p{margin:0 0 6px}
+</style></head>
+<body>
+<div class="top">
+  <header>
+    <h1>Allergenen zoeken</h1>
+    <p class="sub">Demo met een voorbeeld-bestellijst</p>
+  </header>
+  <div class="search">
+    <input id="q" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Zoek op product of artikelnummer" aria-label="Zoek op product of artikelnummer">
+    <button id="clear" type="button" aria-label="Zoekveld leegmaken">×</button>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filter op allergeen"></div>
+  <div id="count" aria-live="polite"></div>
+</div>
+<main><div class="wrap">
+  <ul id="list"></ul>
+  <footer>
+    <p><strong>Rood</strong> = bevat. <strong>Geel</strong> = kan sporen bevatten.</p>
+    <p>Dit is een demo. De producten en allergenen hieronder zijn voorbeelden en geen echte productinformatie.</p>
+    <p>Controleer in de praktijk altijd het etiket van het geleverde product. Recepturen kunnen wijzigen.</p>
+  </footer>
+</div></main>
+<script>
+(function(){
+"use strict";
+/* n = naam, c = groep, a = artikelnummer, b = bevat, k = kan sporen bevatten, s: g = geen opgegeven, n = non-food */
+var DATA=[
+{n:"Aardappelkroketten, zak 2,5 kg",c:"Diepvries",a:"100112",b:["Gluten (tarwe)","Melk"],k:["Ei"]},
+{n:"Afwasmiddel, fles 1 ltr",c:"Non-food",a:"100118",b:[],k:[],s:"n"},
+{n:"Amandelschaafsel, zak 500 gr",c:"Bakproducten",a:"100124",b:["Noten (amandelen)"],k:["Pinda"]},
+{n:"Bitterballen rundvlees, doos 50 stuks",c:"Diepvries",a:"100131",b:["Gluten (tarwe)","Melk","Selderij","Soja"],k:["Mosterd"]},
+{n:"Brioche bun gesneden, doos 48 stuks",c:"Brood",a:"100147",b:["Gluten (tarwe)","Ei","Melk"],k:["Sesam","Soja"]},
+{n:"Bruin brood glutenvrij, 2 stuks",c:"Brood",a:"100153",b:[],k:[]},
+{n:"Cheddar plakken, pak 1 kg",c:"Zuivel",a:"100166",b:["Melk"],k:[]},
+{n:"Chocolademousse, fles 1 ltr",c:"Desserts",a:"100172",b:["Melk","Soja"],k:["Noten"]},
+{n:"Ciabatta wit, doos 40 stuks",c:"Brood",a:"100185",b:["Gluten (tarwe)"],k:["Sesam","Melk"]},
+{n:"Citroensap, fles 1 ltr",c:"Sauzen en kruiden",a:"100191",b:["Sulfiet"],k:[]},
+{n:"Crème fraîche, emmer 1 ltr",c:"Zuivel",a:"100204",b:["Melk"],k:[]},
+{n:"Frites voorgebakken, zak 2,5 kg",c:"Diepvries",a:"100210",b:[],k:[]},
+{n:"Frituurolie, can 10 ltr",c:"Olie en vet",a:"100223",b:[],k:[]},
+{n:"Garnalen gepeld, zak 1 kg",c:"Vis",a:"100239",b:["Schaaldieren","Sulfiet"],k:["Vis"]},
+{n:"Gerookte zalm gesneden, pak 1 kg",c:"Vis",a:"100245",b:["Vis"],k:[]},
+{n:"Groene pesto, pot 1 kg",c:"Sauzen en kruiden",a:"100258",b:["Melk","Noten (cashewnoten)"],k:["Pinda"]},
+{n:"Groentebouillon, bus 1 kg",c:"Soepen en bouillon",a:"100264",b:["Selderij"],k:["Gluten","Mosterd"]},
+{n:"Handschoenen nitril maat L, doos 100 stuks",c:"Non-food",a:"100277",b:[],k:[],s:"n"},
+{n:"Hollandaisesaus, pak 1 ltr",c:"Sauzen en kruiden",a:"100283",b:["Ei","Melk"],k:["Selderij"]},
+{n:"Ketjap manis, fles 1 ltr",c:"Sauzen en kruiden",a:"100296",b:["Soja","Gluten (tarwe)"],k:[]},
+{n:"Kipdijfilet, bak 2,5 kg",c:"Vlees",a:"100302",b:[],k:[]},
+{n:"Kookroom 20%, pak 1 ltr",c:"Zuivel",a:"100315",b:["Melk"],k:[]},
+{n:"Mayonaise, emmer 5 ltr",c:"Sauzen en kruiden",a:"100321",b:["Ei","Mosterd"],k:[]},
+{n:"Mosselen gekookt, zak 1 kg",c:"Vis",a:"100334",b:["Weekdieren"],k:["Schaaldieren","Vis"]},
+{n:"Mosterd grof, pot 800 ml",c:"Sauzen en kruiden",a:"100340",b:["Mosterd","Sulfiet"],k:[]},
+{n:"Notenmix ongebrand, zak 1 kg",c:"Bakproducten",a:"100353",b:["Noten (amandelen, walnoten, cashewnoten)"],k:["Pinda","Sesam"]},
+{n:"Olijfolie extra vierge, fles 5 ltr",c:"Olie en vet",a:"100369",b:[],k:[]},
+{n:"Paneermeel, zak 5 kg",c:"Bakproducten",a:"100375",b:["Gluten (tarwe)"],k:["Ei","Melk","Sesam","Soja"]},
+{n:"Penne, zak 5 kg",c:"Pasta en rijst",a:"100388",b:["Gluten (tarwe)"],k:["Ei"]},
+{n:"Risottorijst, zak 5 kg",c:"Pasta en rijst",a:"100394",b:[],k:[]},
+{n:"Roomboter ongezouten, rol 1 kg",c:"Zuivel",a:"100407",b:["Melk"],k:[]},
+{n:"Satésaus, emmer 5 kg",c:"Sauzen en kruiden",a:"100413",b:["Pinda","Soja"],k:["Gluten","Noten"]},
+{n:"Scharreleieren L, doos 90 stuks",c:"Zuivel",a:"100426",b:["Ei"],k:[]},
+{n:"Sesamolie, fles 500 ml",c:"Olie en vet",a:"100432",b:["Sesam"],k:[]},
+{n:"Sojasaus, fles 1 ltr",c:"Sauzen en kruiden",a:"100445",b:["Soja","Gluten (tarwe)"],k:[]},
+{n:"Tomatenblokjes, blik 2,5 kg",c:"Conserven",a:"100451",b:[],k:[]},
+{n:"Vanille-ijs, bak 5 ltr",c:"Desserts",a:"100464",b:["Melk"],k:["Noten","Pinda","Gluten"]},
+{n:"Vegaburger, doos 30 stuks",c:"Diepvries",a:"100470",b:["Soja","Gluten (tarwe)"],k:["Lupine","Selderij"]},
+{n:"Worcestersaus, fles 500 ml",c:"Sauzen en kruiden",a:"100483",b:["Vis","Gluten (gerst)"],k:[]}
+];
+var ALLERGENS=["Gluten","Schaaldieren","Ei","Vis","Pinda","Soja","Melk","Noten","Selderij","Mosterd","Sesam","Sulfiet","Lupine","Weekdieren"];
+var NOTES={g:"Geen allergenen opgegeven",n:"Non-food, niet van toepassing"};
+function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""); }
+function base(s){ return s.split(" (")[0]; }
+DATA.forEach(function(d){ d.h=norm(d.n+" "+d.c+" "+d.a); d.set={}; d.b.concat(d.k).forEach(function(a){ d.set[base(a)]=1; }); });
+var q=document.getElementById("q"),list=document.getElementById("list"),count=document.getElementById("count"),clear=document.getElementById("clear"),chips=document.getElementById("chips"),active=null;
+ALLERGENS.forEach(function(a){
+  var b=document.createElement("button"); b.type="button"; b.className="chip"; b.textContent=a; b.setAttribute("aria-pressed","false");
+  b.addEventListener("click",function(){ active=active===a?null:a; [].forEach.call(chips.children,function(c){ c.setAttribute("aria-pressed",String(c.textContent===active)); }); render(); });
+  chips.appendChild(b);
+});
+function el(tag,cls,text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+function row(label,cls,arr){ var r=el("div","row"); r.appendChild(el("span","lab "+cls,label)); arr.forEach(function(a){ r.appendChild(el("span","pill "+cls,a)); }); return r; }
+function render(){
+  var terms=norm(q.value).split(/\s+/).filter(Boolean);
+  clear.style.display=q.value?"block":"none";
+  var res=DATA.filter(function(d){ return terms.every(function(t){ return d.h.indexOf(t)>-1; })&&(!active||d.set[active]); });
+  list.textContent="";
+  res.forEach(function(d){
+    var li=el("li","item"),top=el("div");
+    top.appendChild(el("div","name",d.n)); top.appendChild(el("div","meta",d.c+" · art. "+d.a)); li.appendChild(top);
+    if(d.b.length) li.appendChild(row("Bevat","b",d.b));
+    if(d.k.length) li.appendChild(row("Kan bevatten","k",d.k));
+    if(!d.b.length&&!d.k.length) li.appendChild(el("div","note",NOTES[d.s]||NOTES.g));
+    list.appendChild(li);
+  });
+  if(!res.length) list.appendChild(el("li","empty","Geen producten gevonden. Probeer een ander woord of haal het filter weg."));
+  count.textContent=res.length+" van "+DATA.length+" artikelen"+(active?" met "+active.toLowerCase():"");
+}
+q.addEventListener("input",render);
+clear.addEventListener("click",function(){ q.value=""; render(); q.focus(); });
+render();
+})();
+</script>
+</body></html>

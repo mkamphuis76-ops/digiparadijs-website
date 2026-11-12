@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HACCP-app – demo | Digi Paradijs</title>
+<meta name="description" content="Demo van een HACCP-app op maat van Digi Paradijs, met voorbeeldgegevens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Demo met voorbeeldgegevens. Alles blijft in het geheugen van de pagina: er wordt niets bewaard of verstuurd. */
+:root{
+  --bg:#F4F2F0;--surface:#FFFFFF;--sunk:#ECE9E5;--ink:#1A1D24;--muted:#5F6672;--line:#E1DDD8;
+  --accent:#E3640C;--accent-ink:#A84700;--accent-soft:#FDEBDD;--on-accent:#FFFFFF;
+  --ok:#1C7F46;--ok-bg:#E1F2E7;--bad:#C02B2B;--bad-bg:#FBE4E2;--warn:#965900;--warn-bg:#FFF0D2;
+  --shadow:0 1px 2px rgba(40,25,10,.06),0 6px 20px rgba(40,25,10,.06);
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2,p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+
+.top{flex:none;background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.brand{display:flex;flex-direction:column;min-width:0;flex:1}
+.brand b{font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:22px;letter-spacing:-.01em;line-height:1.1}
+.brand b span{color:var(--accent)}
+.brand small{color:var(--muted);font-size:13px}
+.who{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 12px 5px 5px;font-weight:700;font-size:14px}
+.who i{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-style:normal;font-size:13px}
+
+main{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.in{max-width:680px;margin:0 auto;padding:16px 16px 28px;display:flex;flex-direction:column;gap:16px}
+.demo{background:var(--warn-bg);color:var(--warn);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700}
+h1{font-family:var(--f-display);font-stretch:85%;font-weight:800;font-size:26px;letter-spacing:-.01em;line-height:1.1}
+h2{font-family:var(--f-display);font-stretch:85%;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.card{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.pad{padding:14px 16px}
+.big{font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:40px;line-height:1}
+.big small{font-size:18px;color:var(--muted);font-weight:700}
+.bar{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .3s}
+.bar.done i{background:var(--ok)}
+.row{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 14px;border:0;border-top:1px solid var(--line);background:none;text-align:left}
+.row:first-child{border-top:0}
+.row .t{flex:1;min-width:0}
+.row .t b{display:block;font-size:16px}
+.row .t small{color:var(--muted);font-size:13px}
+.row svg{flex:none;color:var(--muted)}
+.ico{width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.ico svg{color:inherit}
+.pill{flex:none;border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.bad{background:var(--bad-bg);color:var(--bad)}
+.empty{padding:20px 16px;text-align:center;color:var(--muted);font-size:15px}
+.log time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;width:44px;flex:none}
+.log .row{cursor:default}
+
+.nav{flex:none;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-in{max-width:680px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 8px;border:0;background:none;color:var(--muted);font-size:10px;font-weight:700;position:relative;min-width:0;overflow:hidden}
+.nav button[aria-current="page"]{color:var(--accent-ink)}
+.nav button[aria-current="page"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+
+.scrim{position:fixed;inset:0;background:rgba(10,8,6,.45);z-index:40}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92%;overflow:auto;background:var(--surface);border-radius:20px 20px 0 0;padding:8px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px;animation:up .22s ease-out}
+@media (min-width:700px){.sheet{left:50%;right:auto;width:640px;transform:translateX(-50%);bottom:24px;border-radius:20px;animation:none}}
+@keyframes up{from{transform:translateY(30px);opacity:.4}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}.bar i{transition:none}}
+[hidden]{display:none!important}
+.grip{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto}
+.sheet-head{display:flex;gap:12px;align-items:flex-start}
+.sheet-head div{flex:1;min-width:0}
+.sheet-head b{font-family:var(--f-display);font-stretch:85%;font-weight:800;font-size:22px;line-height:1.15;display:block}
+.sheet-head small{color:var(--muted)}
+.x{width:40px;height:40px;border-radius:50%;border:0;background:var(--sunk);font-size:20px;flex:none}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>label,.lbl{font-weight:700;font-size:14px}
+.inp{width:100%;min-height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);padding:10px 14px;font-size:17px}
+.inp:focus{border-color:var(--accent);outline:none}
+textarea.inp{min-height:76px;resize:vertical}
+.temp-row{display:flex;gap:8px;align-items:stretch}
+.temp-row .inp{max-width:150px;font-size:24px;font-weight:700;font-family:var(--f-display);text-align:right}
+.sign{min-width:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--sunk);font-size:22px;font-weight:700}
+.unit{align-self:center;color:var(--muted);font-weight:700}
+.verdict{align-self:center;margin-left:auto}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{min-height:56px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.seg button.no[aria-pressed="true"]{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.err{color:var(--bad);font-weight:700;font-size:14px}
+.btn{min-height:54px;border-radius:14px;border:0;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:17px;padding:10px 18px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-weight:700;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+</style></head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand"><b>Keuken <span>HACCP</span></b><small id="hdate">&nbsp;</small></div>
+  <span class="who"><i>S</i>Sanne</span>
+</div></header>
+
+<main id="app" aria-live="polite"></main>
+
+<nav class="nav" aria-label="Onderdelen"><div class="nav-in" id="nav"></div></nav>
+<div id="scrim" class="scrim" hidden></div>
+<div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(function(){
+"use strict";
+var IC = {
+  home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+  temp:'<path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 9v7"/>',
+  proc:'<path d="M4 11h16v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z"/><path d="M2 11h20M9 7c0-1.5 1-1.5 1-3M13 7c0-1.5 1-1.5 1-3"/>',
+  clean:'<path d="M9 3h5v4H9zM7 7h9l1 4H6z"/><path d="M6 11h11l-1 10H7z"/><path d="M14 3h4"/>',
+  truck:'<path d="M2 6h12v10H2zM14 9h4l3 3v4h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
+  log:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h7"/>',
+  chev:'<path d="m9 5 7 7-7 7"/>'
+};
+function ic(n,w){ w=w||24; return '<svg viewBox="0 0 24 24" width="'+w+'" height="'+w+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>'; }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function $(id){ return document.getElementById(id); }
+
+/* Normen: pas deze aan per bedrijf */
+var N = { koel:{op:"<=",v:7}, vries:{op:"<=",v:-18}, gegaard:{op:">=",v:75}, warm:{op:">=",v:60}, spoel:{op:">=",v:55} };
+function normText(n){ return (n.op==="<="?"max. ":"min. ")+n.v+" °C"; }
+function within(n,t){ return n.op==="<=" ? t<=n.v : t>=n.v; }
+
+var SECTIONS = [
+  {id:"temp", name:"Temperaturen", short:"Temp.", icon:"temp"},
+  {id:"proc", name:"Kritische processen", short:"Processen", icon:"proc"},
+  {id:"clean",name:"Schoonmaak", short:"Schoonmaak", icon:"clean"},
+  {id:"recv", name:"Ontvangst goederen", short:"Ontvangst", icon:"truck"}
+];
+var TASKS = [
+  {id:"t1",sec:"temp",name:"Koelcel",norm:N.koel},
+  {id:"t2",sec:"temp",name:"Koelwerkbank koude kant",norm:N.koel},
+  {id:"t3",sec:"temp",name:"Koelwerkbank warme kant",norm:N.koel},
+  {id:"t4",sec:"temp",name:"Saladière",norm:N.koel},
+  {id:"t5",sec:"temp",name:"Vriescel",norm:N.vries},
+  {id:"t6",sec:"temp",name:"Vrieskist magazijn",norm:N.vries},
+  {id:"t7",sec:"temp",name:"Vaatwasser, wastemperatuur",norm:N.spoel},
+  {id:"p1",sec:"proc",name:"Kerntemperatuur gegaard product",norm:N.gegaard},
+  {id:"p2",sec:"proc",name:"Warmhouden bain-marie",norm:N.warm},
+  {id:"p3",sec:"proc",name:"Terugkoelen, na 5 uur",norm:N.koel},
+  {id:"c1",sec:"clean",name:"Werkbanken en snijplanken"},
+  {id:"c2",sec:"clean",name:"Vloer keuken"},
+  {id:"c3",sec:"clean",name:"Frituur en afzuigkap"},
+  {id:"c4",sec:"clean",name:"Koelcel, schappen en vloer"},
+  {id:"r1",sec:"recv",name:"Levering koelvers",norm:N.koel},
+  {id:"r2",sec:"recv",name:"Levering diepvries",norm:N.vries}
+];
+/* Voorbeeldgegevens */
+var DONE = {
+  t1:{t:3.8,at:"08:05",by:"Sanne"}, t2:{t:5.1,at:"08:07",by:"Sanne"}, t3:{t:8.6,at:"08:09",by:"Sanne",note:"Deur stond open. Dichtgedaan, om 9:00 opnieuw meten."},
+  t5:{t:-20.4,at:"08:12",by:"Sanne"}, t6:{t:-19.1,at:"08:14",by:"Sanne"},
+  p1:{t:78,at:"11:40",by:"Daan"},
+  c1:{ok:true,at:"10:30",by:"Lotte"}, c2:{ok:true,at:"10:45",by:"Lotte"},
+  r1:{t:4.2,at:"07:35",by:"Daan"}
+};
+var view = "home";
+
+function isBad(task,e){ return task.norm ? !within(task.norm,e.t) : e.ok===false; }
+function fmt(t){ return String(t).replace(".",",")+" °C"; }
+function stats(sec){ var all=TASKS.filter(function(t){ return !sec||t.sec===sec; }), d=all.filter(function(t){ return DONE[t.id]; }); return {n:all.length,d:d.length}; }
+function pill(task){
+  var e=DONE[task.id]; if(!e) return '<span class="pill">Open</span>';
+  var bad=isBad(task,e), txt=task.norm?fmt(e.t):(e.ok?"Gedaan":"Niet gedaan");
+  return '<span class="pill num '+(bad?"bad":"ok")+'">'+txt+'</span>';
+}
+function taskRow(task){
+  var sub=task.norm?"Norm "+normText(task.norm):"Dagelijks";
+  var e=DONE[task.id]; if(e) sub+=" · "+esc(e.by)+" "+e.at;
+  return '<button class="row" data-task="'+task.id+'"><span class="t"><b>'+esc(task.name)+'</b><small>'+sub+'</small></span>'+pill(task)+ic("chev",18)+'</button>';
+}
+function bar(s){ var p=s.n?Math.round(s.d/s.n*100):0; return '<div class="bar'+(s.d===s.n?" done":"")+'"><i style="width:'+p+'%"></i></div>'; }
+
+function renderHome(){
+  var s=stats(), h='<div class="demo">Demo met voorbeeldgegevens. Wat je invult wordt niet bewaard.</div>';
+  h+='<div class="card pad"><h2>Vandaag</h2><p class="big num" style="margin-top:8px">'+s.d+' <small>van '+s.n+' gedaan</small></p>'+bar(s)+'</div>';
+  var bad=TASKS.filter(function(t){ return DONE[t.id]&&isBad(t,DONE[t.id]); });
+  if(bad.length){ h+='<h2>Afwijkingen</h2><div class="card">'+bad.map(taskRow).join("")+'</div>'; }
+  h+='<h2>Onderdelen</h2><div class="card">'+SECTIONS.map(function(sec){ var x=stats(sec.id);
+    return '<button class="row" data-go="'+sec.id+'"><span class="ico">'+ic(sec.icon,22)+'</span><span class="t"><b>'+sec.name+'</b>'+bar(x)+'</span><span class="pill num'+(x.d===x.n?" ok":"")+'">'+x.d+'/'+x.n+'</span></button>'; }).join("")+'</div>';
+  return h;
+}
+function renderSection(sec){
+  var s=stats(sec.id);
+  return '<h1>'+sec.name+'</h1><p class="num" style="color:var(--muted)">'+s.d+' van '+s.n+' gedaan</p><div class="card">'+TASKS.filter(function(t){ return t.sec===sec.id; }).map(taskRow).join("")+'</div>';
+}
+function renderLog(){
+  var rows=TASKS.filter(function(t){ return DONE[t.id]; }).sort(function(a,b){ return DONE[a.id].at<DONE[b.id].at?1:-1; });
+  var h='<h1>Logboek</h1><p style="color:var(--muted)">Alles wat vandaag is vastgelegd, met tijd en naam.</p><div class="card log">';
+  h+=rows.length?rows.map(function(t){ var e=DONE[t.id];
+    return '<div class="row"><time>'+e.at+'</time><span class="t"><b>'+esc(t.name)+'</b><small>'+esc(e.by)+(e.note?" · "+esc(e.note):"")+'</small></span>'+pill(t)+'</div>'; }).join(""):'<div class="empty">Nog niets vastgelegd vandaag.</div>';
+  return h+'</div>';
+}
+function render(){
+  var sec=SECTIONS.filter(function(s){ return s.id===view; })[0];
+  $("app").innerHTML='<div class="in">'+(view==="home"?renderHome():view==="log"?renderLog():renderSection(sec))+'</div>';
+  $("app").scrollTop=0;
+  var items=[{id:"home",short:"Vandaag",icon:"home"}].concat(SECTIONS,[{id:"log",short:"Logboek",icon:"log"}]);
+  $("nav").innerHTML=items.map(function(i){ return '<button data-go="'+i.id+'"'+(i.id===view?' aria-current="page"':'')+'>'+ic(i.icon)+'<span>'+i.short+'</span></button>'; }).join("");
+}
+
+/* Invoer in een blad onderin */
+var cur=null, sign=1, okChoice=null;
+function openSheet(task){
+  cur=task; var e=DONE[task.id]||{}; okChoice=e.ok===undefined?null:e.ok;
+  var h='<div class="grip"></div><div class="sheet-head"><div><b id="shTitle">'+esc(task.name)+'</b><small>'+(task.norm?"Norm "+normText(task.norm):"Dagelijkse controle")+'</small></div><button class="x" data-close aria-label="Sluiten">×</button></div>';
+  if(task.norm){
+    sign=(e.t!==undefined?e.t<0:task.norm.v<0)?-1:1;
+    h+='<div class="field"><label for="tv">Temperatuur</label><div class="temp-row"><button class="sign" id="sg" type="button" aria-label="Plus of min wisselen">'+(sign<0?"−":"+")+'</button><input class="inp num" id="tv" inputmode="decimal" autocomplete="off" value="'+(e.t!==undefined?String(Math.abs(e.t)).replace(".",","):"")+'"><span class="unit">°C</span><span class="verdict" id="vd"></span></div></div>';
+  } else {
+    h+='<div class="seg"><button type="button" data-ok="1" aria-pressed="'+(okChoice===true)+'">Gedaan</button><button type="button" class="no" data-ok="0" aria-pressed="'+(okChoice===false)+'">Niet gedaan</button></div>';
+  }
+  h+='<div class="field"><label for="nt">Opmerking of genomen actie</label><textarea class="inp" id="nt" maxlength="300" placeholder="Verplicht bij een afwijking">'+esc(e.note||"")+'</textarea></div><p class="err" id="er" hidden></p><button class="btn" id="sv" type="button">Opslaan</button>';
+  $("sheet").innerHTML=h; $("sheet").hidden=false; $("scrim").hidden=false;
+  if(task.norm){ verdict(); }
+}
+function closeSheet(){ $("sheet").hidden=true; $("scrim").hidden=true; cur=null; }
+function readTemp(){ var v=$("tv").value.replace(",",".").trim(); if(v===""||isNaN(v)) return null; return Math.round(Math.abs(parseFloat(v))*sign*10)/10; }
+function verdict(){ var t=readTemp(), el=$("vd"); if(t===null){ el.innerHTML=""; return; } var ok=within(cur.norm,t); el.innerHTML='<span class="pill '+(ok?"ok":"bad")+'">'+(ok?"Binnen norm":"Afwijking")+'</span>'; }
+function save(){
+  var e={by:"Sanne"}, d=new Date(), er=$("er"), note=$("nt").value.trim();
+  e.at=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+  if(cur.norm){ var t=readTemp(); if(t===null||Math.abs(t)>300){ er.textContent="Vul een temperatuur in."; er.hidden=false; return; } e.t=t; }
+  else { if(okChoice===null){ er.textContent="Kies Gedaan of Niet gedaan."; er.hidden=false; return; } e.ok=okChoice; }
+  if(isBad(cur,e)&&!note){ er.textContent="Dit is een afwijking. Schrijf op wat je hebt gedaan."; er.hidden=false; return; }
+  if(note) e.note=note;
+  var bad=isBad(cur,e); DONE[cur.id]=e; closeSheet(); render(); toast(bad?"Afwijking vastgelegd":"Opgeslagen");
+}
+var tt; function toast(m){ var el=$("toast"); el.textContent=m; el.hidden=false; clearTimeout(tt); tt=setTimeout(function(){ el.hidden=true; },2200); }
+
+document.addEventListener("click",function(ev){
+  var b=ev.target.closest("button"); if(ev.target.id==="scrim"){ closeSheet(); return; } if(!b) return;
+  if(b.hasAttribute("data-go")){ view=b.getAttribute("data-go"); render(); }
+  else if(b.hasAttribute("data-task")){ openSheet(TASKS.filter(function(t){ return t.id===b.getAttribute("data-task"); })[0]); }
+  else if(b.hasAttribute("data-close")){ closeSheet(); }
+  else if(b.id==="sg"){ sign=-sign; b.textContent=sign<0?"−":"+"; verdict(); }
+  else if(b.hasAttribute("data-ok")){ okChoice=b.getAttribute("data-ok")==="1"; [].forEach.call(b.parentNode.children,function(c){ c.setAttribute("aria-pressed",String(c===b)); }); }
+  else if(b.id==="sv"){ save(); }
+});
+document.addEventListener("input",function(ev){ if(ev.target.id==="tv"&&cur){ verdict(); } });
+document.addEventListener("keydown",function(ev){ if(ev.key==="Escape"&&cur){ closeSheet(); } });
+
+var dn=new Date(), dg=["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"], mn=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+$("hdate").textContent=dg[dn.getDay()].charAt(0).toUpperCase()+dg[dn.getDay()].slice(1)+" "+dn.getDate()+" "+mn[dn.getMonth()]+" · demo";
+render();
+})();
+</script>
+</body></html>

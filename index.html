@@ -199,6 +199,21 @@ main{overflow-x:hidden;overflow-x:clip;max-width:100vw}
 
 @media (max-width:600px){.mphone{display:none}.device{padding:0}}
 
+/* Apps op maat */
+.apps{background:var(--paper-2)}
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,36px)}
+.app-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,34px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,32px);align-items:center;min-width:0}
+.aphone{display:block;width:clamp(150px,15vw,184px);background:#121A17;border-radius:26px;padding:6px;box-shadow:0 30px 50px -22px rgba(16,42,47,.55);text-decoration:none;transition:transform .4s}
+.aphone:hover{transform:translateY(-6px)}
+.aphone .screen{aspect-ratio:9/19.2;border-radius:20px}
+.app-card .case-info h3{font-size:clamp(1.35rem,2.2vw,1.7rem)}
+.app-foot{margin-top:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;background:var(--jungle);color:var(--on-jungle);border-radius:24px;padding:clamp(22px,3vw,32px)}
+.app-foot h3{font-family:var(--display);font-size:clamp(1.15rem,2vw,1.45rem);letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+.app-foot p{opacity:.85;max-width:56ch}
+.app-note{margin-top:18px;font-size:.9rem;color:var(--mute);max-width:70ch}
+@media (max-width:1040px){.app-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.app-card{grid-template-columns:1fr}.aphone{width:168px;margin-inline:auto}}
+
 /* Facts */
 .facts{background:var(--jungle);color:var(--on-jungle)}
 .facts h2{color:var(--on-jungle)}
@@ -467,6 +482,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav class="menu" id="menu">
       <a href="#werk">Werk</a>
+      <a href="#apps">Apps</a>
       <a href="#calculator">Wat kost het?</a>
       <a href="#werkwijze">Werkwijze</a>
       <a href="#pakketten">Pakketten</a>
@@ -558,6 +574,47 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="apps" class="apps">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Apps</span>
+        <h2>Ook apps op maat, voor op de werkvloer</h2>
+        <p class="lead">Naast websites maken we handige apps voor bedrijven. Op maat gemaakt voor jouw zaak, voor een vaste prijs die je vooraf weet.</p>
+      </div>
+      <div class="app-grid">
+        <article class="app-card">
+          <a class="aphone" href="portfolio/haccp-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de HACCP-app">
+            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#E3640C,#1A1D24)"><div class="fallback">HACCP</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/haccp-demo.html" title="Demo van de HACCP-app op een telefoon" tabindex="-1"></iframe></div></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Voor horeca en keukens</span>
+            <h3>HACCP-app</h3>
+            <p>Temperaturen, schoonmaak en leveringen leg je vast op je telefoon in plaats van op papier. Het hele team werkt in dezelfde lijst en je ziet direct wat er nog open staat.</p>
+            <div class="tags"><span>Temperaturen</span><span>Schoonmaak</span><span>Ontvangst</span><span>Logboek</span></div>
+            <a class="case-link" href="portfolio/haccp-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="app-card">
+          <a class="aphone" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de Allergenen-app">
+            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#0f6b5c,#16211e)"><div class="fallback">Allergenen</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/allergenen-demo.html" title="Demo van de Allergenen-app op een telefoon" tabindex="-1"></iframe></div></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Voor keuken en bediening</span>
+            <h3>Allergenen-app</h3>
+            <p>Zoek in een paar tellen op welke allergenen in een product zitten. Gebouwd op je eigen bestellijst, zodat je een gast snel en duidelijk antwoord geeft.</p>
+            <div class="tags"><span>Zoeken op product</span><span>14 allergenen</span><span>Eigen bestellijst</span><span>Werkt op elke telefoon</span></div>
+            <a class="case-link" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="app-foot">
+        <div><h3>Een ander idee voor je bedrijf?</h3><p>Vertel wat je nu op papier of in losse lijstjes bijhoudt. Wij kijken of een app je werk makkelijker maakt en wat dat kost.</p></div>
+        <a href="#contact" class="btn btn-hot" data-wat="Een app op maat">Vraag een app aan <span class="arrow">→</span></a>
+      </div>
+      <p class="app-note">De demo's werken met voorbeeldgegevens. De apps helpen je bij je registratie en allergeneninformatie. Je blijft zelf verantwoordelijk voor de controle en voor wat je vastlegt.</p>
     </div>
   </section>
 
@@ -790,6 +847,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
               <label class="chip"><input type="radio" name="wat" value="Een nieuwe website" checked><span>Een nieuwe website</span></label>
               <label class="chip"><input type="radio" name="wat" value="Mijn website vernieuwen"><span>Mijn website vernieuwen</span></label>
               <label class="chip"><input type="radio" name="wat" value="Een webshop of boekingssysteem"><span>Webshop of boekingen</span></label>
+              <label class="chip"><input type="radio" name="wat" value="Een app op maat"><span>Een app op maat</span></label>
               <label class="chip"><input type="radio" name="wat" value="Eerst advies"><span>Eerst advies</span></label>
             </div>
           </div>
@@ -828,7 +886,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 <footer>
   <div class="wrap foot">
     <span class="brand"><img class="logo" src="img/logo/digi-paradijs-horizontaal-wit.svg" alt="Digi Paradijs" width="167" height="35" loading="lazy"></span>
-    <nav><a href="#werk">Werk</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
+    <nav><a href="#werk">Werk</a><a href="#apps">Apps</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
     <span>© 2026 Digi Paradijs · info@digiparadijs.nl</span>
   </div>
 </footer>
@@ -990,6 +1048,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   document.getElementById("rCta").addEventListener("click", function(){ calcTouched = true; quoteOn = true; setPkg(quote.pkg); syncQuote(); });
   document.getElementById("quoteRemove").addEventListener("click", function(){ quoteOn = false; syncQuote(); });
   document.querySelectorAll("[data-pkg]").forEach(function(b){ b.addEventListener("click", function(){ setPkg(b.getAttribute("data-pkg")); }); });
+  document.querySelectorAll("[data-wat]").forEach(function(b){ b.addEventListener("click", function(){ var r = document.querySelector('input[name="wat"][value="' + b.getAttribute("data-wat") + '"]'); if(r){ r.checked = true; r.dispatchEvent(new Event("change", {bubbles:true})); } }); });
 
   // Aanvraagformulier in twee stappen, verstuurd naar contact.php
   var form = document.getElementById("form"), s1 = document.getElementById("s1"), s2 = document.getElementById("s2"), done = document.getElementById("done");
