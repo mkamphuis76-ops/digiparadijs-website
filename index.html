@@ -122,7 +122,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .pscroll iframe{display:block;width:390px;height:2600px;border:0;pointer-events:none}
 .pscreen::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 40%);pointer-events:none}
 @keyframes pscroll{0%,10%{transform:translateY(0)}45%,55%{transform:translateY(-1900px)}90%,100%{transform:translateY(0)}}
-.embed .hphone,.embed .nudge,.embed .mbar{display:none!important}
+.embed .hphone,.embed .mbar{display:none!important}
 .lscreen{position:absolute;left:0;top:0;width:1280px;height:1040px;transform-origin:0 0;overflow:hidden;background:#fff;visibility:hidden}
 .lscreen.ready{visibility:visible}
 .lscreen iframe{display:block;width:1280px;height:1040px;border:0;pointer-events:none}
@@ -180,15 +180,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 @keyframes autoscroll{0%,12%{transform:scale(var(--r,1)) translateY(0)}55%,67%{transform:scale(var(--r,1)) translateY(calc(var(--max,0) * -1px))}100%{transform:scale(var(--r,1)) translateY(0)}}
 .hover-scroll:hover .page{transform:scale(var(--r,1)) translateY(calc(var(--max,0) * -1px))}
 
-/* Ticker */
-.ticker-clip{overflow:hidden;padding-block:14px;max-width:100%}
 main{overflow-x:hidden;overflow-x:clip;max-width:100vw}
-.ticker{background:var(--jungle);color:var(--on-jungle);overflow:hidden;padding-block:18px;rotate:-1.5deg;margin-inline:-20px;position:relative;z-index:2}
-.ticker-track{display:flex;width:max-content;animation:slide 40s linear infinite;will-change:transform}
-.ticker-clip.off .ticker-track{animation-play-state:paused}
-.ticker span{font-family:var(--display);font-weight:700;font-size:clamp(1rem,2vw,1.35rem);padding-inline:26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
-.ticker span::after{content:"✺";color:var(--sun);font-size:1.1em}
-@keyframes slide{to{transform:translateX(-50%)}}
 
 /* Work */
 .work-list{display:grid;gap:clamp(56px,8vw,96px)}
@@ -483,20 +475,11 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 .foot a{text-decoration:none;font-weight:700}
 
 /* Floating helpers */
-.nudge{position:fixed;z-index:35;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:320px;background:var(--card);border-radius:22px;padding:18px 18px 16px;box-shadow:0 30px 60px -20px rgba(16,42,47,.45);display:grid;gap:10px;border:1px solid var(--line);translate:0 20px;opacity:0;transition:opacity .4s,translate .4s;pointer-events:none}
-.nudge.show{opacity:1;translate:0 0;pointer-events:auto}
-.nudge .who{display:flex;gap:10px;align-items:center;font-weight:800}
-.nudge .who .mark{width:30px;height:30px}
-.nudge p{color:var(--mute);font-size:.95rem}
-.nudge .row{display:flex;gap:8px}
-.nudge .btn{padding:10px 16px;font-size:.9rem}
-.x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:1.3rem;cursor:pointer;color:var(--mute);line-height:1;padding:6px}
 .mbar{display:none}
 @media (max-width:700px){
   .mbar{display:flex;position:fixed;z-index:34;left:0;right:0;bottom:0;gap:10px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:var(--paper);border-top:1px solid var(--line);translate:0 110%;transition:translate .35s}
   .mbar.show{translate:0 0}
   .mbar .btn{flex:1;padding:13px 14px;font-size:.95rem}
-  .nudge{bottom:calc(84px + env(safe-area-inset-bottom,0px));left:max(16px,env(safe-area-inset-left,0px));max-width:none}
   footer{padding-bottom:110px}
 }
 </style>
@@ -548,7 +531,6 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     </div>
   </section>
 
-  <div class="ticker-clip"><div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div></div>
 
   <section id="werk">
     <div class="wrap">
@@ -666,7 +648,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       <div class="head" style="margin-bottom:32px">
         <span class="label">Pakketten</span>
         <h2>Of kies direct een pakket</h2>
-        <p class="lead">We zijn net begonnen en werken daarom met scherpe starttarieven. Onderhoud is optioneel.</p>
+        <p class="lead">Scherpe prijzen voor kleine ondernemers en verenigingen. Onderhoud is optioneel.</p>
       </div>
       <div class="pk-grid">
         <article class="pk">
@@ -909,12 +891,6 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   </div>
 </footer>
 
-<div class="nudge" id="nudge" role="dialog" aria-label="Hulp nodig?">
-  <button class="x" id="nudgeX" aria-label="Sluiten">×</button>
-  <div class="who"><img class="mark" src="img/logo/digi-paradijs-beeldmerk-kleur.svg" alt="" width="34" height="34" loading="lazy">Even kijken wat je nodig hebt?</div>
-  <p>We denken gratis met je mee. Je krijgt binnen twee werkdagen een eerlijk advies en een prijsvoorstel.</p>
-  <div class="row"><a href="#contact" class="btn btn-hot" id="nudgeGo">Vraag advies</a><a href="#calculator" class="btn btn-line" id="nudgeCalc">Bereken prijs</a></div>
-</div>
 <div class="mbar" id="mbar"><a href="#calculator" class="btn btn-line">Bereken prijs</a><a href="#contact" class="btn btn-hot">Gratis advies</a></div>
 
 <script>
@@ -938,10 +914,6 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("open"); burger.setAttribute("aria-expanded","false"); }); });
 
 
-  // Ticker
-  var tk = ["Kapsalons","Sportclubs","Koks aan huis","Fotografen","Coaches","Verenigingen","Webshops","Schilders","Bakkers"];
-  var html = tk.map(function(t){return "<span>"+t+"</span>";}).join("");
-  document.getElementById("ticker").innerHTML = html + html;
 
   // Live voorbeelden schalen
   var screens = [].slice.call(document.querySelectorAll(".screen[data-w]"));
@@ -990,12 +962,10 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   var lastW = window.innerWidth;
   window.addEventListener("resize", function(){ if(window.innerWidth !== lastW){ lastW = window.innerWidth; fit(); } });
 
-  // Voorbeelden pas laden als ze bijna in beeld komen, en de band pauzeren buiten beeld
+  // Voorbeelden pas laden als ze bijna in beeld komen
   if("IntersectionObserver" in window){
     var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var f = e.target.querySelector("iframe[data-src]"); if(f){ f.src = f.getAttribute("data-src"); f.removeAttribute("data-src"); } io.unobserve(e.target); } }); }, {rootMargin:"400px 0px"});
     if(!EMBED){ screens.forEach(function(sc){ io.observe(sc); }); if(ps) io.observe(ps); }
-    var tc = document.querySelector(".ticker-clip");
-    new IntersectionObserver(function(es){ tc.classList.toggle("off", !es[0].isIntersecting); }).observe(tc);
   } else {
     if(!EMBED) document.querySelectorAll("iframe[data-src]").forEach(function(f){ f.src = f.getAttribute("data-src"); });
   }
@@ -1108,21 +1078,6 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   });
 
 
-  // Vriendelijk duwtje na een tijdje rondkijken
-  var nudge = document.getElementById("nudge"), shown = false, seen = false;
-  try{ seen = sessionStorage.getItem("dpNudge") === "1"; }catch(e){}
-  function hideNudge(){ nudge.classList.remove("show"); try{ sessionStorage.setItem("dpNudge","1"); }catch(e){} }
-  function maybeShow(){
-    if(shown || seen) return;
-    var c = document.getElementById("contact").getBoundingClientRect();
-    if(c.top < window.innerHeight) return;
-    shown = true; nudge.classList.add("show");
-  }
-  if(!EMBED) setTimeout(maybeShow, 25000);
-  window.addEventListener("scroll", function(){ if(window.scrollY > document.body.scrollHeight * 0.45) maybeShow(); }, {passive:true});
-  document.getElementById("nudgeX").addEventListener("click", hideNudge);
-  document.getElementById("nudgeGo").addEventListener("click", hideNudge);
-  document.getElementById("nudgeCalc").addEventListener("click", hideNudge);
 })();
 </script>
 
