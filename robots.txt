@@ -2,5 +2,3 @@ User-agent: *
 Disallow: /portfolio/
 Disallow: /embed.html
 Disallow: /contact.php
-Disallow: /statistiek/
-Disallow: /stats.php
