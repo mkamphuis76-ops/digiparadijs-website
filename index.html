@@ -297,6 +297,13 @@ input[type=range]{width:100%;accent-color:var(--sea);height:28px}
 .ai{background:var(--paper-2)}
 .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
 @media (max-width:860px){.ai-grid{grid-template-columns:1fr}}
+.principles{list-style:none;margin:0;padding:8px 32px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 30px 60px -40px rgba(16,42,47,.35)}
+.principles li{display:grid;grid-template-columns:2.2em 1fr;gap:20px;padding:24px 0}
+.principles li+li{border-top:1px solid var(--line)}
+.principles .pn{font-family:var(--display);font-variant-numeric:tabular-nums;font-weight:800;font-size:.9rem;color:var(--sea-ink);padding-top:3px;letter-spacing:.04em}
+.principles h3{font-size:1.1rem;margin-bottom:6px}
+.principles p{margin:0;color:var(--mute)}
+@media (max-width:520px){.principles{padding:4px 20px}.principles li{gap:14px;padding:20px 0}}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:480px){.duo{grid-template-columns:1fr}}
 .duo div{background:var(--card);border-radius:22px;padding:22px;display:grid;gap:10px;align-content:start}
@@ -795,12 +802,13 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       <div class="head" style="margin:0">
         <span class="label">Over Digi Paradijs</span>
         <h2>Een professionele site, zonder bureauprijs</h2>
-        <p class="lead">Bij een webbureau ben je al snel duizenden euro's kwijt. Wij werken zonder duur kantoor en adviseren eerlijk wat je nodig hebt. Is een eenvoudige website genoeg? Dan zeggen we dat.</p>
-        <p class="lead">Je hebt contact met de mensen die je website maken. Geen ticketsysteem of callcenter.</p>
+        <p class="lead">Bij een webbureau ben je al snel duizenden euro's kwijt. Digi Paradijs werkt zonder duur kantoor. Zo wordt een goede website ook haalbaar voor kleine ondernemers, starters en verenigingen.</p>
       </div>
-      <div class="duo">
-        <div class="wide"><h3>Hoe we AI gebruiken</h3><p>We gebruiken AI bij het bouwen. Het ontwerp, de teksten en de werking worden door ons gecontroleerd en aangepast aan jouw bedrijf.</p></div>
-      </div>
+      <ol class="principles">
+        <li><span class="pn">01</span><div><h3>Eerlijk advies</h3><p>Is een eenvoudige website genoeg? Dan zeggen we dat. Je betaalt alleen voor wat je echt nodig hebt.</p></div></li>
+        <li><span class="pn">02</span><div><h3>Direct contact met de makers</h3><p>Je spreekt de mensen die je website bouwen. Geen ticketsysteem of callcenter.</p></div></li>
+        <li><span class="pn">03</span><div><h3>Slim gebouwd, door ons gecontroleerd</h3><p>We gebruiken AI bij het bouwen. Het ontwerp, de teksten en de werking worden door ons gecontroleerd en aangepast aan jouw bedrijf.</p></div></li>
+      </ol>
     </div>
   </section>
 
