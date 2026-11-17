@@ -387,6 +387,12 @@ input[type=range]{width:100%;accent-color:var(--sea);height:28px}
 .monthly-lines:empty{display:none}
 .pk-note{font-size:.88rem;color:var(--mute);margin-top:-4px}
 .pk{grid-template-rows:auto auto auto 1fr auto auto}
+/* Rijen van de drie pakketten op één lijn: titel, omschrijving, prijs, lijst, opmerking en knop */
+@media (min-width:901px){
+  .pk-grid{row-gap:0}
+  .pk{grid-row:span 6;grid-template-rows:subgrid;row-gap:16px}
+  .pk h3{grid-row:1}.pk .for{grid-row:2}.pk .amt{grid-row:3}.pk ul{grid-row:4}.pk .pk-note{grid-row:5}.pk .btn{grid-row:6;align-self:end}
+}
 .terms{margin-top:36px;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3.5vw,36px);display:grid;gap:20px}
 .terms h3{font-family:var(--display);font-size:1.25rem}
 .terms-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 28px;margin:0}
