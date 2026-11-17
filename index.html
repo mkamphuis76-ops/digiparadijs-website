@@ -214,7 +214,8 @@ main{overflow-x:hidden;overflow-x:clip;max-width:100vw}
 @media (max-width:600px){.mphone{display:none}.device{padding:0}}
 
 /* Apps op maat */
-.apps{background:var(--paper-2)}
+.apps{background:var(--paper)}
+#vragen{background:var(--paper-2)}
 .app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
 .app-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,2.4vw,30px);display:grid;grid-template-columns:1fr;gap:26px;align-content:start;min-width:0}
 .aphone{display:block;width:clamp(150px,15vw,184px);margin-inline:auto;background:#121A17;border-radius:26px;padding:6px;box-shadow:0 30px 50px -22px rgba(16,42,47,.55);text-decoration:none;transition:transform .4s}
@@ -504,10 +505,10 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav class="menu" id="menu">
       <a href="#werk">Werk</a>
-      <a href="#apps">Apps</a>
       <a href="#calculator">Wat kost het?</a>
-      <a href="#werkwijze">Werkwijze</a>
       <a href="#pakketten">Pakketten</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#apps">Apps</a>
       <a href="#vragen">Vragen</a>
       <a href="#contact" class="btn btn-hot">Gratis advies <span class="arrow">→</span></a>
     </nav>
@@ -594,59 +595,6 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           </div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section id="apps" class="apps">
-    <div class="wrap">
-      <div class="head">
-        <span class="label">Apps</span>
-        <h2>Ook apps op maat</h2>
-        <p class="lead">Naast websites maken we handige apps voor bedrijven. Op maat gemaakt voor jouw zaak. Onze eigen app STEEQI laat zien wat er kan.</p>
-      </div>
-      <div class="app-grid">
-        <article class="app-card">
-          <a class="aphone" href="portfolio/haccp-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de HACCP-app">
-            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#E3640C,#1A1D24)"><div class="fallback">HACCP</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/haccp-demo.html" title="Demo van de HACCP-app op een telefoon" tabindex="-1"></iframe></div></div>
-          </a>
-          <div class="case-info">
-            <span class="case-num">Voor horeca en keukens</span>
-            <h3>HACCP-app</h3>
-            <p>Temperaturen, schoonmaak en leveringen leg je vast op je telefoon in plaats van op papier. Het hele team werkt in dezelfde lijst en je ziet direct wat er nog open staat.</p>
-            <div class="tags"><span>Temperaturen</span><span>Schoonmaak</span><span>Ontvangst</span><span>Logboek</span></div>
-            <a class="case-link" href="portfolio/haccp-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
-          </div>
-        </article>
-        <article class="app-card">
-          <a class="aphone" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de Allergenen-app">
-            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#0f6b5c,#16211e)"><div class="fallback">Allergenen</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/allergenen-demo.html" title="Demo van de Allergenen-app op een telefoon" tabindex="-1"></iframe></div></div>
-          </a>
-          <div class="case-info">
-            <span class="case-num">Voor keuken en bediening</span>
-            <h3>Allergenen-app</h3>
-            <p>Zoek in een paar tellen op welke allergenen in een product zitten. Gebouwd op je eigen bestellijst, zodat je een gast snel en duidelijk antwoord geeft.</p>
-            <div class="tags"><span>Zoeken op product</span><span>14 allergenen</span><span>Eigen bestellijst</span><span>Werkt op elke telefoon</span></div>
-            <a class="case-link" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
-          </div>
-        </article>
-        <article class="app-card">
-          <a class="aphone" href="https://steeqi.app" target="_blank" rel="noopener" aria-label="Bezoek steeqi.app">
-            <div class="screen" style="--g:linear-gradient(150deg,#FF7A00,#141414)"><img src="img/steeqi-app.webp" alt="De stekenteller van STEEQI op een telefoon" width="600" height="1298" loading="lazy"></div>
-          </a>
-          <div class="case-info">
-            <span class="case-num">Eigen app · breien en haken</span>
-            <h3>STEEQI</h3>
-            <p>Onze eigen brei- en haakapp. Steken tellen, je patroon stap voor stap volgen, projecten bijhouden en je garenkast beheren. Met gratis en betaalde accounts.</p>
-            <div class="tags"><span>Stekenteller</span><span>Patronen volgen</span><span>Gratis en PRO</span><span>Nederlands en Engels</span></div>
-            <a class="case-link" href="https://steeqi.app" target="_blank" rel="noopener">Bekijk de app <span class="arrow">→</span></a>
-          </div>
-        </article>
-      </div>
-      <div class="app-foot">
-        <div><h3>Een ander idee voor je bedrijf?</h3><p>Vertel wat je nu op papier of in losse lijstjes bijhoudt. Wij kijken of een app je werk makkelijker maakt en wat dat kost.</p></div>
-        <a href="#contact" class="btn btn-hot" data-wat="Een app op maat">Vraag een app aan <span class="arrow">→</span></a>
-      </div>
-      <p class="app-note">De demo's werken met voorbeeldgegevens. De apps helpen je bij je registratie en allergeneninformatie. Je blijft zelf verantwoordelijk voor de controle en voor wat je vastlegt.</p>
     </div>
   </section>
 
@@ -812,6 +760,59 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     </div>
   </section>
 
+  <section id="apps" class="apps">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Apps</span>
+        <h2>Ook apps op maat</h2>
+        <p class="lead">Naast websites maken we handige apps voor bedrijven. Op maat gemaakt voor jouw zaak. Onze eigen app STEEQI laat zien wat er kan.</p>
+      </div>
+      <div class="app-grid">
+        <article class="app-card">
+          <a class="aphone" href="portfolio/haccp-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de HACCP-app">
+            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#E3640C,#1A1D24)"><div class="fallback">HACCP</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/haccp-demo.html" title="Demo van de HACCP-app op een telefoon" tabindex="-1"></iframe></div></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Voor horeca en keukens</span>
+            <h3>HACCP-app</h3>
+            <p>Temperaturen, schoonmaak en leveringen leg je vast op je telefoon in plaats van op papier. Het hele team werkt in dezelfde lijst en je ziet direct wat er nog open staat.</p>
+            <div class="tags"><span>Temperaturen</span><span>Schoonmaak</span><span>Ontvangst</span><span>Logboek</span></div>
+            <a class="case-link" href="portfolio/haccp-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="app-card">
+          <a class="aphone" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de Allergenen-app">
+            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#0f6b5c,#16211e)"><div class="fallback">Allergenen</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/allergenen-demo.html" title="Demo van de Allergenen-app op een telefoon" tabindex="-1"></iframe></div></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Voor keuken en bediening</span>
+            <h3>Allergenen-app</h3>
+            <p>Zoek in een paar tellen op welke allergenen in een product zitten. Gebouwd op je eigen bestellijst, zodat je een gast snel en duidelijk antwoord geeft.</p>
+            <div class="tags"><span>Zoeken op product</span><span>14 allergenen</span><span>Eigen bestellijst</span><span>Werkt op elke telefoon</span></div>
+            <a class="case-link" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener">Probeer de demo <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="app-card">
+          <a class="aphone" href="https://steeqi.app" target="_blank" rel="noopener" aria-label="Bezoek steeqi.app">
+            <div class="screen" style="--g:linear-gradient(150deg,#FF7A00,#141414)"><img src="img/steeqi-app.webp" alt="De stekenteller van STEEQI op een telefoon" width="600" height="1298" loading="lazy"></div>
+          </a>
+          <div class="case-info">
+            <span class="case-num">Eigen app · breien en haken</span>
+            <h3>STEEQI</h3>
+            <p>Onze eigen brei- en haakapp. Steken tellen, je patroon stap voor stap volgen, projecten bijhouden en je garenkast beheren. Met gratis en betaalde accounts.</p>
+            <div class="tags"><span>Stekenteller</span><span>Patronen volgen</span><span>Gratis en PRO</span><span>Nederlands en Engels</span></div>
+            <a class="case-link" href="https://steeqi.app" target="_blank" rel="noopener">Bekijk de app <span class="arrow">→</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="app-foot">
+        <div><h3>Een ander idee voor je bedrijf?</h3><p>Vertel wat je nu op papier of in losse lijstjes bijhoudt. Wij kijken of een app je werk makkelijker maakt en wat dat kost.</p></div>
+        <a href="#contact" class="btn btn-hot" data-wat="Een app op maat">Vraag een app aan <span class="arrow">→</span></a>
+      </div>
+      <p class="app-note">De demo's werken met voorbeeldgegevens. De apps helpen je bij je registratie en allergeneninformatie. Je blijft zelf verantwoordelijk voor de controle en voor wat je vastlegt.</p>
+    </div>
+  </section>
+
   <section id="vragen">
     <div class="wrap faq-grid">
       <div>
@@ -898,7 +899,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 <footer>
   <div class="wrap foot">
     <span class="brand"><img class="logo" src="img/logo/digi-paradijs-horizontaal-wit.svg" alt="Digi Paradijs" width="167" height="35" loading="lazy"></span>
-    <nav><a href="#werk">Werk</a><a href="#apps">Apps</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
+    <nav><a href="#werk">Werk</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#apps">Apps</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
     <span>© 2026 Digi Paradijs · info@digiparadijs.nl</span>
   </div>
 </footer>
