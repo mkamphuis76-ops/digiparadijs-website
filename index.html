@@ -135,10 +135,12 @@ section{padding-block:clamp(64px,9vw,120px)}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
 
 /* Hero: eigen werk in plaats van sfeerfoto */
-.hero-grid:has(.art.show){grid-template-columns:1fr 1.1fr}
+.hero-grid:has(.art.show){grid-template-columns:1.1fr 1fr}
 @media (max-width:920px){.hero-grid:has(.art.show){grid-template-columns:1fr}}
 .art.show{max-width:660px;padding:0 13% 11% 0}
-.hero-grid:has(.art.show) h1{font-size:clamp(2.3rem,4.9vw,3.9rem)}
+.hero-grid:has(.art.show) .hero-copy{container-type:inline-size}
+/* Unbounded is breed: de kop schaalt mee met de kolom, zodat "Duidelijk geregeld." altijd past */
+.hero-grid:has(.art.show) h1{font-size:min(4.2rem,8.2cqi)}
 .hbrowser{position:relative;z-index:1;display:block;text-decoration:none}
 .hbrowser .browser{box-shadow:0 50px 90px -40px rgba(16,42,47,.6)}
 .hbrowser:hover .browser{transform:translateY(-6px)}
