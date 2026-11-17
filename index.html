@@ -385,6 +385,14 @@ input[type=range]{width:100%;accent-color:var(--sea);height:28px}
 .check input[type=radio]{width:20px;height:20px;margin:2px 0 0;accent-color:var(--sea-ink);flex:none}
 .monthly-lines{border-top:0;padding-top:0}
 .monthly-lines:empty{display:none}
+.after{margin-top:32px}
+.after h3{font-family:var(--display);font-size:1.25rem;margin:0 0 16px}
+.after-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.after-grid>div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:24px;display:grid;gap:8px;align-content:start}
+.after-grid h4{font-size:1.1rem;margin:0}
+.after-grid p{margin:0;color:var(--mute)}
+.after-tag{justify-self:start;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sea-ink)}
+@media (max-width:700px){.after-grid{grid-template-columns:1fr}}
 .pk-note{font-size:.88rem;color:var(--mute);margin-top:-4px}
 .pk{grid-template-rows:auto auto auto 1fr auto auto}
 /* Rijen van de drie pakketten op één lijn: titel, omschrijving, prijs, lijst, opmerking en knop */
@@ -627,7 +635,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <fieldset class="q">
             <legend>4. Wat wil je er nog bij?</legend>
             <div class="checks">
-              <label class="check"><input type="checkbox" id="xNews"><span><b>Zelf nieuws of agenda bijwerken</b><small>inbegrepen bij Plus</small></span></label>
+              <label class="check"><input type="checkbox" id="xNews"><span><b>Zelf je website aanpassen</b><small>eigen beheeromgeving · inbegrepen bij Plus en Expert</small></span></label>
               <label class="check"><input type="checkbox" id="xPay"><span><b>Online betalen</b><small>Expert, maatwerk · kosten betaalprovider apart</small></span></label>
               <label class="check"><input type="checkbox" id="xText"><span><b>Wij schrijven de teksten</b><small>€ 25 per pagina</small></span></label>
               <label class="check"><input type="checkbox" id="xHost"><span><b>Domein en hosting laten instellen</b><small>instellen inbegrepen · hosting apart bij Cloud86</small></span></label>
@@ -669,7 +677,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <h3>Plus</h3>
           <p class="for">Meer laten zien en zelf dingen bijhouden.</p>
           <div class="amt"><strong>€ 349</strong><span>eenmalig</span></div>
-          <ul><li>Tot 6 pagina's</li><li>Alles uit Basis</li><li>Uitgebreid aanvraag- of inschrijfformulier</li><li>Zelf nieuws of agenda bijwerken</li><li>Fotogalerij</li><li>Basisinstellingen voor Google</li><li>2 correctierondes</li></ul>
+          <ul><li>Tot 6 pagina's</li><li>Alles uit Basis</li><li>Uitgebreid aanvraag- of inschrijfformulier</li><li>Eigen beheeromgeving: teksten, foto's en prijzen zelf aanpassen</li><li>Fotogalerij</li><li>Basisinstellingen voor Google</li><li>2 correctierondes</li></ul>
           <a href="#contact" class="btn btn-hot" data-pkg="Plus">Kies Plus</a>
         </article>
         <article class="pk">
@@ -683,6 +691,14 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       </div>
       <div class="extras"><span>Extra pagina <b>€ 35</b></span><span>Uitgebreid formulier bij Basis <b>€ 75</b></span><span>Teksten schrijven <b>€ 25 per pagina</b></span><span>Extra wijziging <b>€ 15</b></span><span>Onderhoud <b>€ 12,50 per maand</b></span></div>
 
+      <div class="after">
+        <h3>Na de oplevering: zelf doen of laten doen</h3>
+        <div class="after-grid">
+          <div><span class="after-tag">Plus en Expert</span><h4>Zelf doen, zonder abonnement</h4><p>Je krijgt een eigen beheeromgeving. Daarin pas je zelf teksten, foto's, prijzen en beschikbare data aan. Je bekijkt eerst een voorbeeld en publiceert daarna. Eerdere versies en automatische back-ups zitten erin.</p></div>
+          <div><span class="after-tag">Elk pakket</span><h4>Laten doen, met onderhoud</h4><p>Wij houden updates en beveiliging bij, controleren de back-ups en doen elke maand één kleine wijziging voor je. Voor € 12,50 per maand.</p></div>
+        </div>
+      </div>
+
       <div class="terms">
         <h3>Wat valt eronder?</h3>
         <dl class="terms-grid">
@@ -690,6 +706,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <div><dt>Wat is een correctieronde?</dt><dd>Je verzamelt al je opmerkingen over een versie in één lijst. Wij verwerken die in één keer. Daarna volgt de volgende ronde of je akkoord.</dd></div>
           <div><dt>Wat is een extra wijziging van € 15?</dt><dd>Een kleine aanpassing na oplevering of buiten je correctierondes, tot ongeveer 15 minuten werk. Bijvoorbeeld een tekst aanpassen, een foto vervangen of openingstijden wijzigen. Voor groter werk krijg je eerst een prijs.</dd></div>
           <div><dt>Wat zit er in onderhoud van € 12,50 per maand?</dt><dd>Updates en beveiliging bijhouden, een maandelijkse back-upcontrole en één kleine wijziging per maand, zoals hierboven omschreven. Niet gebruikte wijzigingen schuiven niet door.</dd></div>
+          <div><dt>Wat als er in de beheeromgeving iets misgaat?</dt><dd>Een fout herstel je meestal zelf, via eerdere versies of de prullenbak. Kom je er niet uit, of is er een technisch probleem, dan helpen we je. Dat rekenen we per keer af; je hoort vooraf wat het kost.</dd></div>
           <div><dt>Wat is eenmalig en wat komt terug?</dt><dd>Het pakket, extra pagina's, formulieren en teksten betaal je één keer. Onderhoud is maandelijks en optioneel. Hosting en domein betaal je apart, rechtstreeks aan Cloud86.</dd></div>
           <div><dt>Welke kosten komen er nog bij?</dt><dd>Hosting en domein bij Cloud86, afhankelijk van het pakket dat je kiest. Bij online betalen rekent de betaalprovider kosten per betaling. Eventuele andere externe diensten bespreken we vooraf.</dd></div>
         </dl>
@@ -822,7 +839,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         <details><summary>Waar staat mijn website?</summary><p>Bij Cloud86, een Nederlandse hostingpartij. Domein en hosting staan op jouw naam en betaal je rechtstreeks aan Cloud86. Wij stellen alles voor je in.</p></details>
         <details><summary>Wat kosten domein en hosting?</summary><p>Dat hangt af van het pakket dat je kiest. De actuele prijzen staan op de website van Cloud86. Twijfel je welk pakket past? We adviseren je graag.</p></details>
         <details><summary>Ik heb al hosting ergens anders. Kan dat ook?</summary><p>Vaak wel. We kijken samen of je huidige hosting geschikt is. Wil je overstappen naar Cloud86, dan helpen we je daarbij.</p></details>
-        <details><summary>Kan ik later zelf iets aanpassen?</summary><p>Bij Plus en Expert kun je zelf nieuws, agenda of producten bijwerken. Liever dat wij het doen? Een losse wijziging kost € 15. Met onderhoud (€ 12,50 per maand) zit er elke maand één kleine wijziging in.</p></details>
+        <details><summary>Kan ik later zelf iets aanpassen?</summary><p>Bij Plus en Expert krijg je een eigen beheeromgeving. Daarin pas je zelf teksten, foto's, prijzen en beschikbare data aan, zonder abonnement. Liever dat wij het doen? Een losse wijziging kost € 15. Met onderhoud (€ 12,50 per maand) zit er elke maand één kleine wijziging in.</p></details>
         <details><summary>Is een website met AI wel goed?</summary><p>AI helpt ons sneller te bouwen. Wij controleren en testen alles zelf en passen het aan jouw bedrijf aan. Bekijk ons werk hierboven om te zien wat dat oplevert.</p></details>
         <details><summary>Hoe betaal ik?</summary><p>50% bij de start. De andere 50% betaal je na goedkeuring van de afgesproken website, vóórdat we hem online zetten.</p></details>
         <details><summary>Ik heb al een website. Kun je die vernieuwen?</summary><p>Zeker. Stuur ons de link, dan kijken we wat beter kan en wat het kost.</p></details>
@@ -1016,7 +1033,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     notes.push(o.host ? "Instellen van domein en hosting is inbegrepen. Hosting betaal je apart aan Cloud86." : "Hosting en domein betaal je apart aan Cloud86.");
     document.getElementById("rNote").textContent = notes.join(" ");
     var bits = [o.type, o.pages + (o.pages === 1 ? " pagina" : " pagina's"), FORMNAMES[o.form]];
-    if(o.news) bits.push("zelf nieuws of agenda bijwerken"); if(o.pay) bits.push("online betalen"); if(o.text) bits.push("teksten laten schrijven");
+    if(o.news) bits.push("eigen beheeromgeving"); if(o.pay) bits.push("online betalen"); if(o.text) bits.push("teksten laten schrijven");
     if(o.host) bits.push("domein en hosting laten instellen"); if(o.care) bits.push("onderhoud (€ 12,50 per maand)");
     quote = { pkg: r.pkg, total: r.total, custom: r.custom, text: bits.join(", ") };
     syncQuote();
