@@ -176,6 +176,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800;text-align:center;padding:10px}
 .page{position:absolute;inset:0 auto auto 0;transform-origin:0 0;transform:scale(var(--r,1)) translateY(0);transition:transform 6s ease-in-out}
 .page iframe{display:block;border:0;pointer-events:none;background:#fff}
+.screen .page img.shot{position:static;inset:auto;display:block;max-width:none;object-fit:cover;object-position:top;pointer-events:none}
 .page.auto{animation:autoscroll 18s ease-in-out infinite}
 @keyframes autoscroll{0%,12%{transform:scale(var(--r,1)) translateY(0)}55%,67%{transform:scale(var(--r,1)) translateY(calc(var(--max,0) * -1px))}100%{transform:scale(var(--r,1)) translateY(0)}}
 .hover-scroll:hover .page{transform:scale(var(--r,1)) translateY(calc(var(--max,0) * -1px))}
@@ -539,9 +540,9 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         <div class="sunring" aria-hidden="true"></div>
         <div class="flybird" aria-hidden="true"><div class="fly-hover"><img class="fly-wing" src="img/logo/digi-paradijs-beeldmerk-kleur.svg" alt="" width="84" height="84"></div></div>
         <a class="hbrowser hover-scroll" href="https://miesopznplek.nl" target="_blank" rel="noopener" aria-label="Bezoek miesopznplek.nl, gemaakt door Digi Paradijs">
-          <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een computer" tabindex="-1"></iframe></div></div></div>
+          <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><img class="shot" src="img/hero-mies.webp" data-h="1786" alt="" width="1280" height="1786" decoding="async" fetchpriority="high"></div></div></div>
         </a>
-        <a class="hphone hover-scroll" href="https://www.hidden-moments.nl" target="_blank" rel="noopener" aria-label="Bezoek hidden-moments.nl, gemaakt door Digi Paradijs"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een telefoon" tabindex="-1"></iframe></div></div></a>
+        <a class="hphone hover-scroll" href="https://www.hidden-moments.nl" target="_blank" rel="noopener" aria-label="Bezoek hidden-moments.nl, gemaakt door Digi Paradijs"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><img class="shot" src="img/hero-hidden-moments.webp" data-h="832" alt="" width="390" height="832" decoding="async"></div></div></a>
         <p class="show-cap">Gemaakt door Digi Paradijs: <a href="#werk">Mies op z'n plek</a> en <a href="#werk">Hidden Moments</a></p>
       </div>
     </div>
@@ -945,7 +946,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   var screens = [].slice.call(document.querySelectorAll(".screen[data-w]"));
   function measure(sc){
     var w = +sc.getAttribute("data-w"); if(!sc.clientWidth) return;
-    var r = sc.clientWidth / w, page = sc.querySelector(".page"), fr = page.querySelector("iframe");
+    var r = sc.clientWidth / w, page = sc.querySelector(".page"), fr = page.querySelector("iframe,img");
     var full = +fr.getAttribute("data-h") || (w < 500 ? 2800 : 2400), viewH = sc.clientHeight / r;
     fr.style.width = w + "px"; fr.style.height = full + "px";
     var instant = !page.getAttribute("data-ready") || Math.abs((+page.style.getPropertyValue("--r") || 0) - r) > 0.001;
@@ -978,7 +979,8 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   placeScreen();
   function fit(){ screens.forEach(measure); placeScreen(); }
   screens.forEach(function(sc){
-    var fr = sc.querySelector("iframe");
+    var fr = sc.querySelector("iframe,img");
+    if(fr.tagName === "IMG"){ fr.addEventListener("load", function(){ measure(sc); }); return; }
     fr.addEventListener("load", function(){
       try{ var d = fr.contentDocument, h = Math.max(d.documentElement.scrollHeight, d.body ? d.body.scrollHeight : 0); if(h > 400) fr.setAttribute("data-h", Math.min(h, 5200)); }catch(e){}
       measure(sc);
@@ -990,7 +992,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
   // Voorbeelden pas laden als ze bijna in beeld komen
   if("IntersectionObserver" in window){
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var f = e.target.querySelector("iframe[data-src]"); if(f){ f.src = f.getAttribute("data-src"); f.removeAttribute("data-src"); } io.unobserve(e.target); } }); }, {rootMargin:"400px 0px"});
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var f = e.target.querySelector("iframe[data-src]"); if(f){ f.src = f.getAttribute("data-src"); f.removeAttribute("data-src"); } io.unobserve(e.target); } }); }, {rootMargin:"100px 0px"});
     if(!EMBED){ screens.forEach(function(sc){ io.observe(sc); }); if(ps) io.observe(ps); }
   } else {
     if(!EMBED) document.querySelectorAll("iframe[data-src]").forEach(function(f){ f.src = f.getAttribute("data-src"); });
