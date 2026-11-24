@@ -11,5 +11,7 @@
 # Map met tellers van de spambeveiliging afschermen
 RedirectMatch 404 /\.aanvragen-limiet/
 RedirectMatch 404 /\.dp-stats/
+# Eigen foutpagina
+ErrorDocument 404 /404.html
 # Geen mappenoverzicht tonen
 Options -Indexes

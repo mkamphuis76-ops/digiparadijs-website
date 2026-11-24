@@ -507,8 +507,33 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   .mbar .btn{flex:1;padding:13px 14px;font-size:.95rem}
   footer{padding-bottom:110px}
 }
+
+/* Wie maakt je website */
+.maker{background:var(--paper)}
+.maker-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,6vw,88px);align-items:center}
+.maker-art{position:relative;max-width:460px;justify-self:center;width:100%}
+.maker-art img{display:block;width:100%;height:auto}
+.maker-sign{position:absolute;left:4%;bottom:6%;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 16px;font-weight:800;box-shadow:0 18px 30px -18px rgba(16,42,47,.45);rotate:-3deg}
+.maker-sign small{display:block;font-weight:600;color:var(--mute);font-size:.85rem}
+.maker-copy h2{margin:14px 0 22px}
+.maker-copy p{color:var(--mute);max-width:60ch}
+.maker-copy p+p{margin-top:14px}
+.maker-copy .first{font-size:1.15rem;color:var(--ink)}
+.maker-copy .btn{margin-top:26px}
+@media (max-width:860px){.maker-grid{grid-template-columns:1fr}.maker-art{max-width:320px}}
+/* Michel in de rest van de site */
+.steps .rocket{position:absolute;right:-14px;top:-84px;width:124px;height:auto;pointer-events:none}
+@media (max-width:920px){.steps li.launch{margin-top:40px}}
+@media (max-width:560px){.steps .rocket{right:-4px;top:-72px;width:108px}}
+.app-foot .idea{width:104px;height:auto;flex:none;margin:-34px 0 -10px}
+.app-foot .idea-text{display:flex;align-items:center;gap:20px;flex:1 1 420px}
+@media (max-width:560px){.app-foot .idea-text{flex-direction:column;align-items:flex-start}.app-foot .idea{margin:-30px 0 0}}
+.done-img{width:132px;height:auto}
 </style>
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Digi Paradijs","url":"https://digiparadijs.nl/","logo":"https://digiparadijs.nl/img/logo/digi-paradijs-horizontaal-kleur.svg","image":"https://digiparadijs.nl/img/deelafbeelding.jpg","description":"Websites voor kleine ondernemers, clubs en verenigingen. Vanaf € 199, met vooraf een afgesproken prijs.","email":"info@digiparadijs.nl","address":{"@type":"PostalAddress","streetAddress":"Da Costastraat 11","postalCode":"3771 ZA","addressLocality":"Barneveld","addressCountry":"NL"},"areaServed":"NL","priceRange":"€€","vatID":"NL002194599B16","founder":{"@type":"Person","name":"Michel"},"parentOrganization":{"@type":"Organization","name":"HS Advies & Begeleiding","identifier":"KVK 68794797"}}
+</script>
 </head>
 <body>
 
@@ -761,7 +786,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         <li><span class="when">Dag 1</span><h3>Kennismaken</h3><p>Je stuurt een aanvraag. Wij bellen of mailen je om te horen wat je wilt en wat bij je past.</p></li>
         <li><span class="when">Dag 2–3</span><h3>Aanleveren</h3><p>Je stuurt logo, foto's en teksten. Geen teksten? Die schrijven wij voor je.</p></li>
         <li><span class="when">Meestal binnen een week</span><h3>Eerste versie</h3><p>Je ziet je nieuwe website en geeft je opmerkingen door. Wij verwerken ze in je correctieronde.</p></li>
-        <li><span class="when">Na je akkoord</span><h3>Online</h3><p>Keur je de website goed, dan betaal je het tweede deel en zetten we hem online. We laten zien hoe je hem bijhoudt.</p></li>
+        <li class="launch"><img class="rocket" src="img/michel-raket.webp" alt="" width="515" height="520" loading="lazy" decoding="async"><span class="when">Na je akkoord</span><h3>Online</h3><p>Keur je de website goed, dan betaal je het tweede deel en zetten we hem online. We laten zien hoe je hem bijhoudt.</p></li>
       </ol>
     </div>
   </section>
@@ -778,6 +803,25 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         <li><span class="pn">02</span><div><h3>Direct contact met de makers</h3><p>Je spreekt de mensen die je website bouwen. Geen ticketsysteem of callcenter.</p></div></li>
         <li><span class="pn">03</span><div><h3>Slim gebouwd, door ons gecontroleerd</h3><p>We gebruiken AI bij het bouwen. Het ontwerp, de teksten en de werking worden door ons gecontroleerd en aangepast aan jouw bedrijf.</p></div></li>
       </ol>
+    </div>
+  </section>
+
+  <section id="over" class="maker" aria-labelledby="maker-title">
+    <div class="wrap maker-grid">
+      <figure class="maker-art" style="margin:0">
+        <img src="img/michel.webp" alt="Getekend portret van Michel, de maker van Digi Paradijs, met krullend haar en een brede lach" width="720" height="719" loading="lazy" decoding="async">
+        <figcaption class="maker-sign">Michel<small>Maker van Digi Paradijs</small></figcaption>
+      </figure>
+      <div class="maker-copy">
+        <span class="label">Wie maakt je website</span>
+        <h2 id="maker-title">Een website die bij jouw bedrijf past</h2>
+        <p class="first">Ik ben Michel, kok van beroep en websitebouwer uit nieuwsgierigheid en enthousiasme.</p>
+        <p>In de keuken heb ik geleerd hoe belangrijk aandacht voor detail is. Een gerecht moet niet alleen goed smaken, het moet er ook verzorgd uitzien. Bij een website vind ik hetzelfde belangrijk: hij moet prettig werken, duidelijk zijn en passen bij het bedrijf erachter.</p>
+        <p>Digi Paradijs begon toen ik zelf websites ging maken en ontdekte hoeveel plezier ik haal uit het bedenken, bouwen en verbeteren ervan. Ik vind het mooi om van losse ideeën een overzichtelijke website te maken waar een ondernemer trots op kan zijn, en waar klanten snel vinden wat ze zoeken.</p>
+        <p>Met Digi Paradijs help ik kleine bedrijven en zelfstandigen aan een professionele website die past bij hun wensen en budget. Ik denk met je mee, leg uit wat ik doe en houd het contact persoonlijk en begrijpelijk. AI gebruik ik als hulpmiddel, met aandacht voor een resultaat dat echt bij jouw bedrijf past.</p>
+        <p>Ben je toe aan een nieuwe website, of kan je huidige site wel een opfrisbeurt gebruiken? Dan denk ik graag met je mee.</p>
+        <a href="#contact" class="btn btn-hot">Vertel me over je bedrijf <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -827,7 +871,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         </article>
       </div>
       <div class="app-foot">
-        <div><h3>Een ander idee voor je bedrijf?</h3><p>Vertel wat je nu op papier of in losse lijstjes bijhoudt. Wij kijken of een app je werk makkelijker maakt en wat dat kost.</p></div>
+        <div class="idea-text"><img class="idea" src="img/michel-idee.webp" alt="" width="383" height="420" loading="lazy" decoding="async"><div><h3>Een ander idee voor je bedrijf?</h3><p>Vertel wat je nu op papier of in losse lijstjes bijhoudt. Wij kijken of een app je werk makkelijker maakt en wat dat kost.</p></div></div>
         <a href="#contact" class="btn btn-hot" data-wat="Een app op maat">Vraag een app aan <span class="arrow">→</span></a>
       </div>
       <p class="app-note">De demo's werken met voorbeeldgegevens. De apps helpen je bij je registratie en allergeneninformatie. Je blijft zelf verantwoordelijk voor de controle en voor wat je vastlegt.</p>
@@ -909,7 +953,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <p class="privacy-note">We gebruiken je gegevens alleen om je aanvraag te beantwoorden. Lees meer in onze <a href="privacy.html" target="_blank" rel="noopener">privacyverklaring</a>.</p>
         </div>
         <div class="done" id="done" hidden tabindex="-1">
-          <div class="done-icon" aria-hidden="true">✓</div>
+          <img class="done-img" src="img/michel-duim.webp" alt="" width="386" height="420" loading="lazy" decoding="async">
           <h3>Bedankt, je aanvraag is verstuurd</h3>
           <p>We hebben je aanvraag ontvangen en reageren binnen twee werkdagen met een persoonlijk voorstel.</p>
         </div>
@@ -921,7 +965,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 <footer>
   <div class="wrap foot">
     <span class="brand"><img class="logo" src="img/logo/digi-paradijs-horizontaal-wit.svg" alt="Digi Paradijs" width="167" height="35" loading="lazy"></span>
-    <nav><a href="#werk">Werk</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#apps">Apps</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
+    <nav><a href="#werk">Werk</a><a href="#over">Over Michel</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#apps">Apps</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
     <span>© 2026 Digi Paradijs · <a href="mailto:info@digiparadijs.nl">info@digiparadijs.nl</a><br>Da Costastraat 11, 3771 ZA Barneveld<br>Digi Paradijs is een handelsnaam van HS Advies &amp; Begeleiding · KVK 68794797 · btw-id NL002194599B16</span>
   </div>
 </footer>
