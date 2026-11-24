@@ -58,7 +58,13 @@ if (preg_match_all('/https?:\/\/|www\./i', $bericht) > 3) { reply(false, 'invali
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'onbekend';
 $dir = is_writable(dirname(__DIR__)) ? dirname(__DIR__) . '/.aanvragen-limiet' : __DIR__ . '/.aanvragen-limiet';
 if (!is_dir($dir)) { @mkdir($dir, 0700, true); @file_put_contents($dir . '/.htaccess', "Require all denied\nDeny from all\n"); }
-$file = $dir . '/' . hash('sha256', $ip) . '.json';
+// Geheime sleutel buiten de code (staat niet in GitHub), zodat het IP-adres niet terug te rekenen is
+$saltFile = $dir . '/.sleutel';
+$salt = is_readable($saltFile) ? trim((string) @file_get_contents($saltFile)) : '';
+if (strlen($salt) < 32) { $salt = bin2hex(random_bytes(32)); @file_put_contents($saltFile, $salt, LOCK_EX); @chmod($saltFile, 0600); }
+// Opruimen: tellers die langer dan een uur niet zijn gebruikt, worden verwijderd
+foreach ((array) glob($dir . '/*.json') as $old) { if (is_file($old) && filemtime($old) < time() - 3600) { @unlink($old); } }
+$file = $dir . '/' . hash_hmac('sha256', $ip, $salt) . '.json';
 $hits = [];
 if (is_readable($file)) { $hits = json_decode((string) @file_get_contents($file), true) ?: []; }
 $hits = array_values(array_filter($hits, function ($t) { return $t > time() - 3600; }));
