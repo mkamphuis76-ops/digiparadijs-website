@@ -453,7 +453,8 @@ input[type=range]{width:100%;accent-color:var(--sea);height:28px}
 .promise li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
 .promise li::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--sun) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-8' fill='none' stroke='%2314261F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;margin-top:2px}
 .mailrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.mailrow code{font-family:var(--body);font-weight:800;font-size:1.1rem;background:rgba(255,244,236,.1);padding:10px 16px;border-radius:4px;user-select:all;word-break:break-all}
+.mailrow .mail{font-family:var(--body);font-weight:800;font-size:1.1rem;background:rgba(255,244,236,.1);padding:10px 16px;border-radius:4px;word-break:break-all;color:inherit;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.mailrow .mail:hover{text-decoration-thickness:2px}
 .copy{font:inherit;font-weight:800;font-size:.9rem;background:var(--sun);color:var(--ink);border:0;border-radius:4px;padding:10px 16px;cursor:pointer}
 form{background:var(--card);color:var(--ink);border-radius:4px;padding:clamp(22px,3.5vw,36px);display:grid;gap:16px;box-shadow:0 50px 80px -40px rgba(0,0,0,.6)}
 .f-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -537,9 +538,9 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         <div class="sunring" aria-hidden="true"></div>
         <div class="flybird" aria-hidden="true"><div class="fly-hover"><img class="fly-wing" src="img/logo/digi-paradijs-beeldmerk-kleur.svg" alt="" width="84" height="84"></div></div>
         <a class="hbrowser hover-scroll" href="https://miesopznplek.nl" target="_blank" rel="noopener" aria-label="Bezoek miesopznplek.nl, gemaakt door Digi Paradijs">
-          <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een computer" tabindex="-1"></iframe></div></div></div>
+          <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een computer" tabindex="-1"></iframe></div></div></div>
         </a>
-        <a class="hphone hover-scroll" href="https://www.hidden-moments.nl" target="_blank" rel="noopener" aria-label="Bezoek hidden-moments.nl, gemaakt door Digi Paradijs"><div class="screen" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een telefoon" tabindex="-1"></iframe></div></div></a>
+        <a class="hphone hover-scroll" href="https://www.hidden-moments.nl" target="_blank" rel="noopener" aria-label="Bezoek hidden-moments.nl, gemaakt door Digi Paradijs"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een telefoon" tabindex="-1"></iframe></div></div></a>
         <p class="show-cap">Gemaakt door Digi Paradijs: <a href="#werk">Mies op z'n plek</a> en <a href="#werk">Hidden Moments</a></p>
       </div>
     </div>
@@ -556,8 +557,8 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       <div class="work-list">
         <article class="case">
           <a class="device hover-scroll" href="https://miesopznplek.nl" target="_blank" rel="noopener" aria-label="Bezoek miesopznplek.nl">
-            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een computer" tabindex="-1"></iframe></div></div></div>
-            <div class="mphone"><div class="screen" data-w="390" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een telefoon" tabindex="-1"></iframe></div></div></div>
+            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>miesopznplek.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies op z'n plek</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een computer" tabindex="-1"></iframe></div></div></div>
+            <div class="mphone"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#365d45,#b4535b)"><div class="fallback">Mies</div><div class="page"><iframe scrolling="no" data-src="portfolio/mies.html" title="Mies op z'n plek op een telefoon" tabindex="-1"></iframe></div></div></div>
           </a>
           <div class="case-info">
             <span class="case-num">Eigen project · Kok aan huis · Barneveld</span>
@@ -570,8 +571,8 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
         <article class="case">
           <a class="device hover-scroll" href="https://www.hidden-moments.nl" target="_blank" rel="noopener" aria-label="Bezoek hidden-moments.nl">
-            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>hidden-moments.nl</span></div><div class="screen" data-w="1280" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een computer" tabindex="-1"></iframe></div></div></div>
-            <div class="mphone"><div class="screen" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een telefoon" tabindex="-1"></iframe></div></div></div>
+            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>hidden-moments.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een computer" tabindex="-1"></iframe></div></div></div>
+            <div class="mphone"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#6C7350,#8A5A38)"><div class="fallback">Hidden Moments</div><div class="page"><iframe scrolling="no" data-src="portfolio/hidden-moments.html" title="Hidden Moments op een telefoon" tabindex="-1"></iframe></div></div></div>
           </a>
           <div class="case-info">
             <span class="case-num">Klant · Picknicks en belevenissen</span>
@@ -584,8 +585,8 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
 
         <article class="case">
           <a class="device hover-scroll" href="https://woolporn.nl" target="_blank" rel="noopener" aria-label="Bezoek woolporn.nl">
-            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>woolporn.nl</span></div><div class="screen" data-w="1280" style="--g:linear-gradient(150deg,#2f5d50,#b0245a)"><div class="fallback">Woolporn</div><div class="page"><iframe scrolling="no" data-src="portfolio/woolporn.html?v=2" title="Woolporn op een computer" tabindex="-1"></iframe></div></div></div>
-            <div class="mphone"><div class="screen" data-w="390" style="--g:linear-gradient(150deg,#2f5d50,#b0245a)"><div class="fallback">Woolporn</div><div class="page"><iframe scrolling="no" data-src="portfolio/woolporn.html?v=2" title="Woolporn op een telefoon" tabindex="-1"></iframe></div></div></div>
+            <div class="browser"><div class="bbar"><i></i><i></i><i></i><span>woolporn.nl</span></div><div class="screen" aria-hidden="true" data-w="1280" style="--g:linear-gradient(150deg,#2f5d50,#b0245a)"><div class="fallback">Woolporn</div><div class="page"><iframe scrolling="no" data-src="portfolio/woolporn.html?v=2" title="Woolporn op een computer" tabindex="-1"></iframe></div></div></div>
+            <div class="mphone"><div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#2f5d50,#b0245a)"><div class="fallback">Woolporn</div><div class="page"><iframe scrolling="no" data-src="portfolio/woolporn.html?v=2" title="Woolporn op een telefoon" tabindex="-1"></iframe></div></div></div>
           </a>
           <div class="case-info">
             <span class="case-num">Eigen project · Online magazine · haken en breien</span>
@@ -667,7 +668,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       <div class="pk-grid">
         <article class="pk">
           <h3>Basis</h3>
-          <p class="for">Goed vindbaar met de belangrijkste informatie.</p>
+          <p class="for">Een nette, complete site met de belangrijkste informatie.</p>
           <div class="amt"><strong>€ 199</strong><span>eenmalig</span></div>
           <ul><li>Tot 3 pagina's</li><li>Werkt op telefoon, tablet en computer</li><li>Standaard contactformulier</li><li>Links naar je social media</li><li>1 correctieronde</li></ul>
           <a href="#contact" class="btn btn-line" data-pkg="Basis">Kies Basis</a>
@@ -780,7 +781,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
       <div class="app-grid">
         <article class="app-card">
           <a class="aphone" href="portfolio/haccp-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de HACCP-app">
-            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#E3640C,#1A1D24)"><div class="fallback">HACCP</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/haccp-demo.html" title="Demo van de HACCP-app op een telefoon" tabindex="-1"></iframe></div></div>
+            <div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#E3640C,#1A1D24)"><div class="fallback">HACCP</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/haccp-demo.html" title="Demo van de HACCP-app op een telefoon" tabindex="-1"></iframe></div></div>
           </a>
           <div class="case-info">
             <span class="case-num">Voor horeca en keukens</span>
@@ -792,7 +793,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         </article>
         <article class="app-card">
           <a class="aphone" href="portfolio/allergenen-demo.html" target="_blank" rel="noopener" aria-label="Open de demo van de Allergenen-app">
-            <div class="screen" data-w="390" style="--g:linear-gradient(150deg,#0f6b5c,#16211e)"><div class="fallback">Allergenen</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/allergenen-demo.html" title="Demo van de Allergenen-app op een telefoon" tabindex="-1"></iframe></div></div>
+            <div class="screen" aria-hidden="true" data-w="390" style="--g:linear-gradient(150deg,#0f6b5c,#16211e)"><div class="fallback">Allergenen</div><div class="page"><iframe scrolling="no" data-h="832" data-src="portfolio/allergenen-demo.html" title="Demo van de Allergenen-app op een telefoon" tabindex="-1"></iframe></div></div>
           </a>
           <div class="case-info">
             <span class="case-num">Voor keuken en bediening</span>
@@ -804,7 +805,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
         </article>
         <article class="app-card">
           <a class="aphone" href="https://steeqi.app" target="_blank" rel="noopener" aria-label="Bezoek steeqi.app">
-            <div class="screen" style="--g:linear-gradient(150deg,#FF7A00,#141414)"><img src="img/steeqi-app.webp" alt="De stekenteller van STEEQI op een telefoon" width="600" height="1298" loading="lazy"></div>
+            <div class="screen" aria-hidden="true" style="--g:linear-gradient(150deg,#FF7A00,#141414)"><img src="img/steeqi-app.webp" alt="De stekenteller van STEEQI op een telefoon" width="600" height="1298" loading="lazy"></div>
           </a>
           <div class="case-info">
             <span class="case-num">Eigen app · breien en haken</span>
@@ -858,7 +859,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <li>Vooraf een duidelijke prijs, geen verrassingen</li>
           <li>Persoonlijk contact met de makers</li>
         </ul>
-        <div class="mailrow"><code id="mail">info@digiparadijs.nl</code><button class="copy" id="copyMail" type="button">Kopieer</button></div>
+        <div class="mailrow"><a class="mail" id="mail" href="mailto:info@digiparadijs.nl">info@digiparadijs.nl</a><button class="copy" id="copyMail" type="button">Kopieer</button></div>
       </div>
 
       <form id="form" novalidate action="contact.php" method="post">
@@ -924,7 +925,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   var CLOUD86 = "https://www.cloud86.io/nl/webhosting#a_aid=64edd98b8e528&a_bid=af551252";
   document.querySelectorAll("a.cloud86").forEach(function(a){ a.href = CLOUD86; });
 
-  document.getElementById("mail").textContent = EMAIL;
+  var mailEl = document.getElementById("mail"); mailEl.textContent = EMAIL; mailEl.href = "mailto:" + EMAIL;
   var EMBED = !!window.DP_EMBED; if(EMBED) document.documentElement.classList.add("embed");
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
