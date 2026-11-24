@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /portfolio/
-Disallow: /embed.html
 Disallow: /contact.php
+
+Sitemap: https://digiparadijs.nl/sitemap.xml
