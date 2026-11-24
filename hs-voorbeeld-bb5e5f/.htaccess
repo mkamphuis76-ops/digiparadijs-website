@@ -7,3 +7,7 @@ DirectoryIndex index.php
   Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
 Options -Indexes
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>

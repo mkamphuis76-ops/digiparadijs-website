@@ -25,7 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fout = true;
 }
 
-if (!empty($_SESSION['ok'])) { header('Content-Type: text/html; charset=utf-8'); readfile(__DIR__ . '/site.html'); exit; }
+if (!empty($_SESSION['ok'])) {
+    header('Content-Type: text/html; charset=utf-8');
+    $pagina = (($_GET['pagina'] ?? '') === 'privacy') ? 'privacy.html' : 'site.html';
+    readfile(__DIR__ . '/' . $pagina);
+    exit;
+}
 ?><!DOCTYPE html>
 <html lang="nl">
 <head>
