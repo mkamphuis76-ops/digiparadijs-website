@@ -2,7 +2,7 @@
 // Afgeschermde voorbeeldversie van de website van HS Advies & Begeleiding.
 // Het wachtwoord staat hier alleen als hash. Nieuw wachtwoord? Maak een nieuwe hash met
 // php -r 'echo password_hash("nieuw-wachtwoord", PASSWORD_DEFAULT);' en vervang PW_HASH.
-const PW_HASH = 'y$Xlo/nd2KmaT1LRKa.ANGQuVMdRPRq5m7diris14mGvPpzijaC4N/2';
+const PW_HASH = '$2y$10$SJAS4Fx0TKkEEUxYm6pnh.BMCJ25F5aNEojV2qQqGF7QOo4LRcICK';
 
 header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: private, no-store');
