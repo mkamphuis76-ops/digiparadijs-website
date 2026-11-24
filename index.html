@@ -455,6 +455,7 @@ input[type=range]{width:100%;accent-color:var(--sea);height:28px}
 .mailrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .mailrow .mail{font-family:var(--body);font-weight:800;font-size:1.1rem;background:rgba(255,244,236,.1);padding:10px 16px;border-radius:4px;word-break:break-all;color:inherit;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .mailrow .mail:hover{text-decoration-thickness:2px}
+.addr{margin-top:14px;font-size:.95rem;opacity:.85}
 .copy{font:inherit;font-weight:800;font-size:.9rem;background:var(--sun);color:var(--ink);border:0;border-radius:4px;padding:10px 16px;cursor:pointer}
 form{background:var(--card);color:var(--ink);border-radius:4px;padding:clamp(22px,3.5vw,36px);display:grid;gap:16px;box-shadow:0 50px 80px -40px rgba(0,0,0,.6)}
 .f-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -860,6 +861,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
           <li>Persoonlijk contact met de makers</li>
         </ul>
         <div class="mailrow"><a class="mail" id="mail" href="mailto:info@digiparadijs.nl">info@digiparadijs.nl</a><button class="copy" id="copyMail" type="button">Kopieer</button></div>
+        <p class="addr">Digi Paradijs · Da Costastraat 11, 3771 ZA Barneveld</p>
       </div>
 
       <form id="form" novalidate action="contact.php" method="post">
@@ -911,7 +913,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   <div class="wrap foot">
     <span class="brand"><img class="logo" src="img/logo/digi-paradijs-horizontaal-wit.svg" alt="Digi Paradijs" width="167" height="35" loading="lazy"></span>
     <nav><a href="#werk">Werk</a><a href="#calculator">Prijzen</a><a href="#hosting">Hosting</a><a href="#apps">Apps</a><a href="#vragen">Vragen</a><a href="#contact">Contact</a><a href="privacy.html">Privacy</a></nav>
-    <span>© 2026 Digi Paradijs · info@digiparadijs.nl<br>Digi Paradijs is een handelsnaam van HS Advies &amp; Begeleiding · KVK 68794797</span>
+    <span>© 2026 Digi Paradijs · <a href="mailto:info@digiparadijs.nl">info@digiparadijs.nl</a><br>Da Costastraat 11, 3771 ZA Barneveld<br>Digi Paradijs is een handelsnaam van HS Advies &amp; Begeleiding · KVK 68794797 · btw-id NL002194599B16</span>
   </div>
 </footer>
 
@@ -1002,18 +1004,24 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
   var quote = null, calcTouched = false, quoteOn = true;
   function eur(n){ return n.toLocaleString("nl-NL", {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2}); }
   function compute(o){
-    var lines = [], pkg, custom = false;
-    if(o.type === "Webshop" || o.form === "book" || o.pay){ pkg = "Expert"; custom = true; }
-    else if(o.pages > INCL.Basis || o.news){ pkg = "Plus"; }
-    else { pkg = "Basis"; }
-    lines.push(["Pakket " + pkg + " (tot " + INCL[pkg] + " pagina's)", PRICES[pkg]]);
-    var extra = Math.max(0, o.pages - INCL[pkg]);
-    if(extra) lines.push([extra + (extra === 1 ? " extra pagina" : " extra pagina's"), extra * PRICES.extraPage]);
-    if(o.form === "ext" && pkg === "Basis") lines.push(["Uitgebreid formulier", PRICES.extForm]);
-    if(o.text) lines.push(["Teksten voor " + o.pages + (o.pages === 1 ? " pagina" : " pagina's"), o.pages * PRICES.text]);
-    var total = lines.reduce(function(a, l){ return a + l[1]; }, 0);
+    var custom = false, options;
+    if(o.type === "Webshop" || o.form === "book" || o.pay){ options = ["Expert"]; custom = true; }
+    else if(o.news){ options = ["Plus"]; }
+    else { options = ["Basis", "Plus"]; }
+    function build(pkg){
+      var lines = [["Pakket " + pkg + " (tot " + INCL[pkg] + " pagina's)", PRICES[pkg]]];
+      var extra = Math.max(0, o.pages - INCL[pkg]);
+      if(extra) lines.push([extra + (extra === 1 ? " extra pagina" : " extra pagina's") + " à € " + PRICES.extraPage, extra * PRICES.extraPage]);
+      if(o.form === "ext" && pkg === "Basis") lines.push(["Uitgebreid formulier", PRICES.extForm]);
+      if(o.text) lines.push(["Teksten voor " + o.pages + (o.pages === 1 ? " pagina" : " pagina's"), o.pages * PRICES.text]);
+      return { pkg: pkg, lines: lines, total: lines.reduce(function(a, l){ return a + l[1]; }, 0) };
+    }
+    var all = options.map(build), best = all[0];
+    all.forEach(function(r){ if(r.total < best.total) best = r; });
+    var upsell = null;
+    if(best.pkg === "Basis" && all[1]){ var diff = all[1].total - best.total; if(diff > 0 && diff <= 150) upsell = diff; }
     var monthly = []; if(o.care) monthly.push(["Onderhoud per maand", PRICES.care]);
-    return { pkg: pkg, custom: custom, lines: lines, total: total, monthly: monthly };
+    return { pkg: best.pkg, custom: custom, lines: best.lines, total: best.total, monthly: monthly, upsell: upsell };
   }
   window.dpCompute = compute;
   var FORMNAMES = { std: "standaard contactformulier", ext: "uitgebreid aanvraag- of inschrijfformulier", book: "boekingssysteem met beschikbaarheid" };
@@ -1030,6 +1038,7 @@ footer{background:var(--jungle-2);color:#BCD5D8;padding-block:40px;font-size:.92
     document.getElementById("rMonthly").innerHTML = r.monthly.map(function(l){ return "<div><span>" + l[0] + "</span><span>€ " + eur(l[1]) + "</span></div>"; }).join("");
     var notes = [];
     if(r.custom) notes.push("Maatwerk: je krijgt vooraf een offerte met de definitieve prijs.");
+    if(r.upsell) notes.push("Tip: voor € " + eur(r.upsell) + " meer heb je Plus, met een eigen beheeromgeving, een fotogalerij en een extra correctieronde.");
     if(o.pay) notes.push("De betaalprovider rekent kosten per betaling.");
     notes.push(o.host ? "Instellen van domein en hosting is inbegrepen. Hosting betaal je apart aan Cloud86." : "Hosting en domein betaal je apart aan Cloud86.");
     document.getElementById("rNote").textContent = notes.join(" ");
