@@ -1,3 +1,9 @@
+# www.digiparadijs.nl doorsturen naar digiparadijs.nl (één vast adres voor Google)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.digiparadijs\.nl$ [NC]
+  RewriteRule ^ https://digiparadijs.nl%{REQUEST_URI} [L,R=301]
+</IfModule>
 # Bestanden die alleen voor GitHub zijn, niet tonen op de website
 <FilesMatch "^(README\.md|\.gitignore|\.htaccess|stats-lib\.php)$">
   Require all denied
