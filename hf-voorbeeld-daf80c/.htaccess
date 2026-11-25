@@ -1,0 +1,13 @@
+# Alleen via index.php (met wachtwoord) te bekijken
+DirectoryIndex index.php
+<FilesMatch "\.(html|txt|md)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+Options -Indexes
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
